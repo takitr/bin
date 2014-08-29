@@ -23,3 +23,5 @@ zip -yr ../update_unsign.zip *
 cd ..
 
 rm -rf $PWD/tmp
+
+echo "You need sign package !!!"
