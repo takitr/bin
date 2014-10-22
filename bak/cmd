@@ -18,7 +18,7 @@ mount -o rw,remount /system
   usb start;fatload usb 0 82000000 u-boot;sf probe 2;sf erase 0 60000;sf write 82000000 0 60000
 
 ssh XXX@timehold.f3322.org -p 8989
-scp -P 8989 1 zhaoxinhai@116.30.241.144:~
+scp -P 8989 1 zhaoxinhai@timehold.f3322.org:~
 
 lunch g24ref_g24ref_a706_780TPC-user
    make otapackage -j4
@@ -70,7 +70,7 @@ repo start jb-mr1-timehold-1225 --all
 git push gerrit HEAD:refs/for/jb-mr1-1225-timehold
 
 git push gerrit HEAD:refs/for/kk-timehold-0823-cibn
-
+git remote show gerrit
 
 repo manifest -r -o .repo/manifests/test-ok.xml 
 repo init -m test-ok.xml 
@@ -161,8 +161,10 @@ git push gerrit HEAD:refs/for/master （这里master需要对应修改为你当�
 5、代码提交后的审核工作
 打开http://27.154.234.214:8081
 
+单独编译 res-package.img
+s805/device/amlogic/common/res
 
-
+cat res-package.img > /dev/block/logo
 
 0x000000000000-0x000000060000 : "bootloader"
 0x000000080000-0x000000088000 : "ubootenv"
@@ -235,4 +237,20 @@ bb
 多线程下载工具
 axel
 http://www.freehao123.com/baiduyun-linux-vps/
+
+擦出nand env
+store disprotect key; store scrub 0
+
+android 查看内存命令
+dumpsys meminfo
+monkey -p com.demo -v 100
+
+adb pull /data/data/com.android.providers.settings/databases/settings.db
+
+screencap -p aaa.png
+
+select * from system
+update Secure set value=1 where name = 'eth_on';
+
+build/tools/buildinfo.sh
 
