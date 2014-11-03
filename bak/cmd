@@ -49,7 +49,7 @@ aapt dump badging xxx.apk
 busybox ifconfig eth0 hw ether 00:11:22:33:44:66
 env set ethaddr 00:11:22:33:44:55
 
-
+mac_wifi
 
  cd sys/class/aml                                              
 root@android:/sys/class/aml_keys/aml_keys # echo mac > key_name
@@ -212,13 +212,28 @@ mx取码流文件
 加在 LOCAL_PACKAGE_NAME := HiveviewSetting 之前 
 LOCAL_DEX_PREOPT := false
 
-convert -resize 1920x1080 aaa.bmp bbb.bmp
 
+convert -resize 1920x1080! aaa.bmp bbb.bmp                      ! 强制转
+convert -resize 1280x720! input.bmp output.bmp
+
+convert -fill green -pointsize 40 -draw 'text 10,50 "charry.org"' inputpic outputpic      //在图片左上角添加 绿色 charr.org 字
+import        截图
+display
+identify
 
 重新提交代码
 
 git fetch timehold-server
 git rebase remotes/timehold-server/kk-timehold-0823
+
+
+
+git branch jb-mr1-1225-timehold
+git checkout jb-mr1-1225-timehold
+git fetch timehold-server
+git rebase timehold-server/jb-mr1-1225-timehold
+git commit --amend
+git push gerrit HEAD:refs/for/jb-mr1-1225-timehold
 
 git push xxx
 
@@ -254,3 +269,33 @@ update Secure set value=1 where name = 'eth_on';
 
 build/tools/buildinfo.sh
 
+openssl pkcs8 -in build/target/product/security/testkey.pk8 -inform DER -nocrypt
+
+./build/tools/aml_upgrade/aml_image_v2_packer -r out/target/product/m201_th0/aml_upgrade_package.conf out/target/product/m201_th0/ out/target/product/m201_th0/aml_upgrade_package.img
+
+mkuserimg.sh -s out/target/product/m201_th0/system out/target/product/m201_th0/obj/PACKAGING/systemimage_intermediates/system.img ext4 system 1073741824 out/target/product/m201_th0/root/file_contexts
+
+simg2img
+
+out/target/product/m201_th0/obj/KERNEL_OBJ/arch/arm/boot/dts/amlogic/meson8b_m201_1G_th0.dtb
+
+解压 ramdisk.img   mv ramdisk.img ramdisk.img.gz;ramgunzip randisk.img.gz;cpio -i -F ramdisk.img
+解压 logo.img   imgpack -d logo.img aaa
+
+find . | cpio -o -Hnewc |gzip -9 > ../image.cpio.gz
+mkbootimg --kernel uImage --ramdisk ramdisk.img --second ../meson8b_m201_1G_th0.dtb -o boot.img
+
+vcc gnd tx rx
+
+recovery --update_package=/udisk/
+echo --update_package=/cache/update.zip > /cache/recovery/commond
+
+cibn:  echo on/off > /proc/net_state  echo pon/poff > /proc/power_state
+
+config kernel :  make kernelconfig/make ksavedefconfig
+
+setprop sys.powerctl reboot;    重启服务 ctl.stop zygote;ctl.start zygote  rawbu  bugreport
+
+dexdump;hexdump
+
+aml制作死机 echo write 0x00000000 0x30003000 >sys/class/amlogic/debug
