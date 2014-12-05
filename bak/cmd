@@ -63,9 +63,12 @@ root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    a
 
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 -m default-cibn.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git 
 
+电信/OTT代码
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
 repo start jb-mr1-timehold-1225 --all
 
-
+git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/TH-factoryTest
 
 git push gerrit HEAD:refs/for/jb-mr1-1225-timehold
 
@@ -91,6 +94,7 @@ git reset --soft HEAD^^
 git checkout oldbranche                //将其他分支的修改应用到oldbranche
 git cherry-pick 2fa2f80
 
+git archive --format tar -o file.tar HEAD
 
 git fetch origin master:tmp
 git diff tmp
@@ -263,6 +267,7 @@ monkey -p com.demo -v 100
 adb pull /data/data/com.android.providers.settings/databases/settings.db
 
 screencap -p aaa.png
+screenrecord 
 
 select * from system
 update Secure set value=1 where name = 'eth_on';
@@ -299,3 +304,34 @@ setprop sys.powerctl reboot;    重启服务 ctl.stop zygote;ctl.start zygote  r
 dexdump;hexdump
 
 aml制作死机 echo write 0x00000000 0x30003000 >sys/class/amlogic/debug
+
+framework 添加字符资源
+string.xml
+public.xml
+ 尝试更新api声明（make update-api），./frameworks/base/api/current.txt
+
+
+api:
+Log.d(TAG,Log.getStackTraceString(new Throwable()));
+
+VPN 帐号
+li.sj.pandapow.us
+HowEasy
+pp63097
+xKrqvMuYu
+
+cat /proc/`ps | grep com.voole.vooledesktop | awk '{print $2}'`/oom_adj
+echo 1 > /proc/sys/kernel/printk
+top -d 1 | grep voole
+
+
+
+fatload mmc 0 12000000 xx.bmp
+bmp display 12000000
+
+logcat | grep --color=auto -i
+
+ arm-linux-gnueabihf-addr2line -f -e out/target/product/g18ref_th8/obj/KERNEL_OBJ/vmlinux  c00bf008
+
+strace http://www.cnblogs.com/qianxudetianxia/archive/2012/05/14/2497073.html
+tcpdump http://my.oschina.net/xiahuawuyu/blog/108915
