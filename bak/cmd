@@ -69,6 +69,14 @@ repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/
 repo start jb-mr1-timehold-1225 --all
 
 git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/TH-factoryTest
+git clone ssh://git@27.154.234.214/repository/timehold/mx-SettingEx-pbs.git
+
+git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/mx-OTAUpgrade
+git branch -a
+git checkout xxx
+
+git clone ssh://git@27.154.234.214/repository/timehold/m8-cibn/Settings_cibn
+git clone ssh://git@27.154.234.214/repository/timehold/m8-vl/VLMediaCenter
 
 git push gerrit HEAD:refs/for/jb-mr1-1225-timehold
 
@@ -192,7 +200,6 @@ cat res-package.img > /dev/block/logo
  nand erase 2000000 800000
  nand write 82000000 2000000 800000
 
- git clone ssh://git@27.154.234.214/repository/timehold/mx-SettingEx-pbs.git
 
 awk {print } < adbkey.pub | openssl base64 -A -d -a | openssl md5 -c | awk {print } | tr [:lower:] [:upper:]
 
@@ -335,3 +342,21 @@ logcat | grep --color=auto -i
 
 strace http://www.cnblogs.com/qianxudetianxia/archive/2012/05/14/2497073.html
 tcpdump http://my.oschina.net/xiahuawuyu/blog/108915
+
+/framework/av/cmds
+ stagefright -a -s -o /sdcard/music/01天鹅之旅.mp3
+ screenrecord --size 1280*720 /sdcard/demo.mp4
+
+smali logcat
+
+
+const-string v2, "TAG"                                                                                                                 
+const-string v3, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+invoke-static {v2, v3}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+
+const-string v2, "test"
+const/4 v3, 0x1
+invoke-static {p0, v2, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+move-result-object v2
+invoke-virtual {v2}, Landroid/widget/Toast;->show()V
