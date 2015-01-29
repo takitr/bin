@@ -1,0 +1,92 @@
+diff --git a/src/cn/com/otaupgrade/LoaderReceiver.java b/src/cn/com/otaupgrade/LoaderReceiver.java
+index 270aef5..773925c 100644
+--- a/src/cn/com/otaupgrade/LoaderReceiver.java
++++ b/src/cn/com/otaupgrade/LoaderReceiver.java
+@@ -24,6 +24,12 @@ public class LoaderReceiver extends BroadcastReceiver {
+     
+ 	private final int MSG_CHECK_NEW_VERSION =  33;
+ 	private Handler mHandler = new MainHandler();
++	private String strIntroduction = "";
++	private String currentVersion = "0.0.0";
++    private static String otaFilePath = "/cache/";
++    private static String otaFileName = "ota.zip";
++	private String url = "";
++	private String fid = "22db52bf9b134d5c925dddb4cf9e4bdb";
+ 	
+     private class MainHandler extends Handler {
+         @Override
+@@ -212,12 +218,73 @@ public class LoaderReceiver extends BroadcastReceiver {
+ 		public void onHasUpgrade(UpdateInfo updateInfo) 
+ 		{
+ 			Log.e(TAG, "onHasUpgrade");
++			strIntroduction = updateInfo.getIntroduction();
++			Log.e(TAG, "strIntroduction : " + strIntroduction);
++			currentVersion = updateInfo.getCurrentVersion();
++			Log.e(TAG, "currentVersion : " + currentVersion);
++			url = updateInfo.getDownloadUrl();
++			Log.e(TAG, "url : " + url);
++			fid = updateInfo.getFid();
++			Log.e(TAG, "fid : " + fid);
++           if(strIntroduction !=null) { 
+ 			Intent intent1 = new Intent();
+ 			intent1.setAction(UpgradeService.ACTION_CHECK);
+ 			intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+ 			intent1.setClass(g_context, UpdateActivity.class);
+ 			g_context.startActivity(intent1);
+-		}
++		 }
++         else {
++             
++	int fileSize = 1;
++	FileDownloader fileFetch = null;
++
++	static int i = 0;
++	public void download() {			
++		fileFetch = new FileDownloader(url, otaFilePath,
++				otaFileName, 1, fid, currentVersion,
++					new FileDownLoaderListener() {
++
++						@Override
++						public void onFileDownLoadProgress(int size) {						
++							if(1 == (++i % 100) )
++							{
++								Message msg = Message.obtain();
++								msg.arg1 = mCombineBtnTag_progress;
++								msg.arg2 = size;
++								h.sendMessage(msg);	
++								
++								Log.e("OTA" , "down size : " + size + "   file size : " + fileSize);
++							}
++						}
++
++						@Override
++						public void onFileDownLoadError(String msg) {
++							Log.e("OTA" , "onFileDownLoadError:" + msg);
++						}
++
++						@Override
++						public void onFileDownLoadEnd() {
++							Log.e("OTA" , "onFileDownLoadEnd");
++							Message msg = Message.obtain();
++							msg.arg1 = mCombineBtnTag_update;
++							h.sendMessage(msg);
++						}
++
++						@Override
++						public void onFileDownLoadBegin(int fileSize2) {
++							fileSize = fileSize2;
++							
++							Log.e("OTA" , "onFileDownLoadBegin  fileSize : " + fileSize);
++							Message msg = Message.obtain();
++							msg.arg1 = mCombineBtnTag_pause;
++							h.sendMessage(msg);
++						}
++					});
++		
++			fileFetch.download();
++	}
++
++         } 
+ 
+ 		@Override
+ 		public void onError(String errorMsg) 
