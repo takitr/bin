@@ -66,6 +66,87 @@ repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/pla
 电信/OTT代码
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
+移动/OTT代码  m201
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-cbc-20150122.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+
+mx浙江移动   g18
+repo init -u ssh://git@27.154.234.214/repository/amlogic/mxbox-jb-iptv/platform/manifest.git -b jb-mr1-amlogic-chinamobile-20140516-sync -m jb-mr1-amlogic-chinamobile-20141110.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+
+s812 n200 
+
+s802 k200
+
+
+1. 代码下载
+移动代码
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+电信/OTT代码
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+---------------------------------------------------------------------------------------------------------
+2. 代码编译方法：
+
+1. 需要export PROJECT_TYPE，为了区分版本的类别，分为移动，电信，OTT：
+
+移动IPTV ==> export PROJECT_TYPE=mobile
+
+电信IPTV ==> export PROJECT_TYPE=telecom
+
+电信IPTV ==> export PROJECT_TYPE=ott
+
+2. 需要export PROJECT_ID，为了区分平台硬件差异，如你的项目ID为k21等：
+
+k21   ==> export PROJECT_ID=k21
+
+m201  ==> export PROJECT_ID=m201
+
+3. 电信IPTV配置，上海电信、广东电信:
+
+BUILD_SH_TELECOM_APKS := false
+
+BUILD_GD_TELECOM_APKS := true
+
+4. 配置电信IPTV中间件:
+
+BUILD_SY_APKS := true
+
+BUILD_IPANEL_APKS := false
+
+5.具体编译命令如下：
+
+M201公版+电信IPTV:
+
+. build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=m201;lunch m201-user;make otapackage -j24
+
+M201公版+移动IPTV:
+
+. build/envsetup.sh;export PROJECT_TYPE=mobile PROJECT_ID=m201;lunch m201-user;make otapackage -j24
+
+k21项目+电信IPTV:
+
+. build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=k21;lunch m201-user;make otapackage -j24
+
+---------------------------------------------------------------------------------------------------------
+3. 移动IPTV设置mac和serialno的方法(以cntv的序列号和mac为例)：
+
+                    移动开户需要SN，移动后台开完户后，进入bestv和cntv的话，SN无关，关键是androidboot.mac和mac.
+
+					                    在uboot下命令行，在storeargs的参数里添加：
+
+										androidboot.serialno=00AA00010307040O001098BC5707F5D0
+
+										androidboot.mac=98:BC:57:07:F5:D0
+
+										mac=98:BC:57:07:F5:D0
+
+
+
+
+
+
 repo start jb-mr1-timehold-1225 --all
 
 git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/TH-factoryTest
@@ -218,7 +299,7 @@ mx取码流文件
 			    32:audio es data write
 				dump file is under /data/tmp, and file name is pidn_dump_xx.dat, pidn is player_id, used to recognize different player threads.
 
-
+mkdir /data/tmp;chmod 777 /data/tmp;setprop media.libplayer.dumpmode 2
 
 加在 LOCAL_PACKAGE_NAME := HiveviewSetting 之前 
 LOCAL_DEX_PREOPT := false
@@ -266,6 +347,10 @@ http://www.freehao123.com/baiduyun-linux-vps/
 
 擦出nand env
 store disprotect key; store scrub 0
+
+
+sudo mount -t cifs //10.28.5.240/test /var/tmp/share/ -o username=administrator,password=
+
 
 android 查看内存命令
 dumpsys meminfo
@@ -354,9 +439,33 @@ const-string v2, "TAG"
 const-string v3, "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 invoke-static {v2, v3}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
+Toast
 
 const-string v2, "test"
 const/4 v3, 0x1
 invoke-static {p0, v2, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
 move-result-object v2
 invoke-virtual {v2}, Landroid/widget/Toast;->show()V
+
+
+MethodTracing
+
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+onCreate
+const-string v2, "hahahahaha"
+invoke-static {v2}, Landroid/os/Debug;->startMethodTracing(Ljava/lang/String;)V
+
+onStop
+invoke-static {}, Landroid/os/Debug;->stopMethodTracing()V
+
+
+
+
+
+crash:
+
+arm-linux-gnueabihf-objdump -dS xxx.so
+
+
+
+OTA_update
