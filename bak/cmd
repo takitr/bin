@@ -61,7 +61,10 @@ root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    a
 
  repo init -u ssh://git@27.154.234.214/repository/amlogic/mx-jellybean-mr1-box-pbs/platform/manifest.git -b jb-mr1-1225-timehold --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 -m default-cibn.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git 
+timehold 0823
+
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823-0113 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
 
 电信/OTT代码
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
@@ -143,7 +146,10 @@ k21项目+电信IPTV:
 										mac=98:BC:57:07:F5:D0
 
 
-
+004001FF005200100001
+64
+D954010207
+64:D9:54:01:02:07
 
 
 
@@ -158,6 +164,9 @@ git checkout xxx
 
 git clone ssh://git@27.154.234.214/repository/timehold/m8-cibn/Settings_cibn
 git clone ssh://git@27.154.234.214/repository/timehold/m8-vl/VLMediaCenter
+
+IOV
+git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/obd/IOV
 
 git push gerrit HEAD:refs/for/jb-mr1-1225-timehold
 
@@ -353,6 +362,8 @@ sudo mount -t cifs //10.28.5.240/test /var/tmp/share/ -o username=administrator,
 
 
 android 查看内存命令
+
+ dumpsys media.player -m 
 dumpsys meminfo
 monkey -p com.demo -v 100
 
@@ -427,6 +438,10 @@ logcat | grep --color=auto -i
 
 strace http://www.cnblogs.com/qianxudetianxia/archive/2012/05/14/2497073.html
 tcpdump http://my.oschina.net/xiahuawuyu/blog/108915
+tcpdump -p -vv -s 0 -w /sdcard/capture.pcap 
+
+busybox telnetd -l /system/bin/sh
+
 
 /framework/av/cmds
  stagefright -a -s -o /sdcard/music/01天鹅之旅.mp3
@@ -467,5 +482,82 @@ crash:
 arm-linux-gnueabihf-objdump -dS xxx.so
 
 
+vim
+supertab git clone http://github.com/ervandew/supertab 
+
+easydlna
+
+git clone git://code.csdn.net/Innost/easydlna.git
 
 OTA_update
+
+
+==================================================================
+amlogigc gpio set
+
+uboot: gset GPIODV_29 out high
+ 1 set input 0 set output
+				 CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, (1<<11)|(1<<25));
+				 CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<1);																								CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<17);
+  
+  aml_set_reg32_mask(P_PERIPHS_PIN_MUX_9,0x1<<19);//set mode GPIOX_10-->CLK_OUT3
+  
+  setbits_le32(P_AO_GPIO_O_EN_N, (1 << 3));                           // GPIOAO_3 as power key input
+  clrbits_le32(P_AO_RTI_PIN_MUX_REG, ((1 << 7)|(1 << 9)|(1 << 22)));  // clear pinmux as gpio function
+  
+  set GPIODV_29 H
+  
+            clrbits_le32(P_PERIPHS_PIN_MUX_7, (1 << 25)|(1 << 26));                                                                                    clrbits_le32(P_PERIPHS_PIN_MUX_3, (1 << 25));
+            clrbits_le32(P_PERIPHS_PIN_MUX_9, (1 << 26));
+            aml_set_reg32_bits(CBUS_REG_ADDR(0x2012),0,29,1);
+            aml_set_reg32_bits(CBUS_REG_ADDR(0x2013),1,29,1);
+
+
+===============================================================
+
+tar czvfp - m8iptv.tar.gz | split -b 3000m
+
+cat xa* > m8iptv.tar.gz
+
+==================================================================
+MediaPlayer播放dump流
+----------------------------------------------------------------------------------------
+ts dump流
+1. setprop  media.libplayer.dumpmode 0 or 1
+2. mkdir /data/tmp
+3. chmod 777 /data/tmp
+4. 停止播放，再播放，录的流位于/data/tmp
+
+es dump流
+1. setprop  media.libplayer.dumpmode 4 or 8
+2. mkdir /data/tmp
+3. chmod 777 /data/tmp
+4. 停止播放，再播放，录的流位于/data/tmp
+
+hls dump 流
+1. setprop libplayer.hls.dump 1
+2. mkdir /cached
+3. chmod 777 /cached
+4. 停止播放，再播放，录的流位于/cached.
+
+电信CTC播放dump流：
+---------------------------------------------------------------------------------------------
+1. setprop iptv.dumpfile 1
+2. 插入U盘，
+3. kill iptv apk( ps 查看pid)
+	4. 播放，录流位于/storage/external_storage/sda1/Live0.ts
+=================================================================
+tftp
+
+/etc/default/tftpd-hpa
+sudo /etc/init.d/tftpd-hpa restart
+
+ubuntu tftp 127.0.0.1 -c get boot.img
+xp     tftp -i 192.168.2.242 get boot.img
+android  
+get tftp -g -l boot.img 192.168.2.242
+
+ftpget
+ftpget -u ftp-common -p timehold 27.154.234.214 README
+
+
