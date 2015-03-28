@@ -156,6 +156,10 @@ D954010207
 repo start jb-mr1-timehold-1225 --all
 
 git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/TH-factoryTest
+
+git clone ssh://git@27.154.234.214/repository/timehold/TH-factoryTest.git -b kk-timehold-0823-cibn
+
+
 git clone ssh://git@27.154.234.214/repository/timehold/mx-SettingEx-pbs.git
 
 git clone ssh://zhaoxinhai@27.154.234.214:29418/repository/timehold/mx-OTAUpgrade
@@ -491,6 +495,25 @@ git clone git://code.csdn.net/Innost/easydlna.git
 
 OTA_update
 
+uboot source_code   git clone git://git.denx.de/u-boot.git
+kernel source_code git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux.git
+
+
+busybox git://git.busybox.net/busybox
+
+gnu
+China
+http://mirror.hust.edu.cn/gnu/
+http://mirror.bjtu.edu.cn/gnu/
+http://mirrors.ustc.edu.cn/gnu/
+ftp://mirrors.ustc.edu.cn/gnu/
+rsync://mirrors.ustc.edu.cn/gnu/
+
+
 
 ==================================================================
 amlogigc gpio set
@@ -560,4 +583,27 @@ get tftp -g -l boot.img 192.168.2.242
 ftpget
 ftpget -u ftp-common -p timehold 27.154.234.214 README
 
+tar czf m8iptv_youpeng.tar.gz * --exclude .repo --exclude .git --exclude out
+
+
+cat /proc/meminfo
+
+MemTotal:         829612 kB
+MemFree:          373420 kB
+Buffers:           21704 kB
+Cached:           161176 kB
+
+剩余总内存   MemFree + Buffers + Cached
+
+
+echo 0 0 1279 719 > /sys/class/graphics/fb0/window_axis
+echo 0x10001 > /sys/class/graphics/fb0/free_scale
+
+
+
+Log.d("ttt123",Log.getStackTraceString(new Throwable()));
+\\10.28.11.7
+sw
+soft8205
+\\10.28.11.7\anyone\CIBN
 
