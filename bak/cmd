@@ -20,6 +20,29 @@ mount -o rw,remount /system
 ssh XXX@timehold.f3322.org -p 8989
 scp -P 8989 1 zhaoxinhai@timehold.f3322.org:~
 
+scp -P 7878 ~/.ssh/id_rsa.pub zhaoxinhai@timehold.wicp.net:~/.ssh/authorized_keys
+
+sz http://timehold.wicp.net:8888/
+
+xm  http://27.154.234.214:8088/job/m8-s805-cibn/
+	
+	http://27.154.234.214:8081/#/
+
+外网 timehold.wicp.net
+内网 192.168.2.4
+外网端口 7878
+内网端口 22
+用户名 zhaoxinhai
+默认密码 0000
+11:05:12
+/th_public1/jenkins/daily_build/m8-s805-cibn.sh
+
+http://timehold.wicp.net:8888 可以登录这个查看和控制
+
+
+
+
+
 lunch g24ref_g24ref_a706_780TPC-user
    make otapackage -j4
 
@@ -328,9 +351,6 @@ identify
 
 重新提交代码
 
-git fetch timehold-server
-git rebase remotes/timehold-server/kk-timehold-0823
-
 
 
 git branch jb-mr1-1225-timehold
@@ -607,3 +627,16 @@ sw
 soft8205
 \\10.28.11.7\anyone\CIBN
 
+
+logcat -c;logcat -s -vtime amplayer amffmpeg
+
+==============================================
+游乐桶
+
+am broadcast -a airplay.amlogic.changeName -e DEVNAME AirPlay-中华云盒
+
+Hank 2015-3-27 14:52:07
+am broadcast -a airplay.amlogic.stopService
+
+Hank 2015-3-27 14:52:19
+am broadcast -a airplay.amlogic.startService
