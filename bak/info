@@ -1,0 +1,879 @@
+
+
+9.12  Debug release
+
+adb root 动态白名单
+
+9.19
+差分
+
+
+9.24
+
+bypass_interlace_output
+
+arch/arm/cpu/aml_meson/uclboot
+
+am start -n com.into.stability/.Run
+/common/customer/boards
+
+IR_POWER_KEY
+
+usb start;fatload usb 0 82000000 boot.img;nand erase 2000000 800000;nand write 82000000 2000000 800000;reset
+
+java -Xmx2048m -jar out/host/linux-x86/framework/signapk.jar -w build/target/product/security/testkey.x509.pem build/target/product/security/testkey.pk8 /tmp/tmp0wqHhR out/target/product/m201_th0/m201_th0-ota-20140902.V0823.zip
+
+ubootenv.var.digitaudiooutput
+
+/sys/class/audiodsp/digital_raw
+
+com.hiveview.subsettings/com.hiveview.settings.DisplaySettingsActivity
+
+
+
+sys.boot_completed
+
+
+echo 0 > /sys/module/di/parameters/bypass_interlace_output;am start -n com.farcore.videoplayer/.FileList
+am start -n com.hiveview.subsettings/com.hiveview.setting
+com.hiveview.upgrade.UpgradeActivity1
+
+am start -n com.smit.livevideo/.LiveVideoActivity
+
+am start -n com.amlapp.update.otaupgrade/.MainActivity 
+
+java -Xmx2048m -jar out/host/linux-x86/framework/signapk.jar -w build/target/product/security/testkey.x509.pem build/target/product/security/testkey.pk8 
+
+git branch base-common
+2049  git branch test
+2050  git diff
+2051  git checkout test 
+2052  git revert 63bd28ef8fb99f896d3636117d7c
+
+ivan.nie@amlogic.com
+
+/sys/class/amstream # cat bufs | grep level
+
+am start -n com.meson.videoplayer/.FileList
+
+am start -n com.fb.FileBrower/com.fb.FileBrower.FileBrower
+
+
+usb start;fatload usb 0 82000000 u-boot.bin;sf probe 2;sf erase 0 60000;sf write 82000000 0 60000
+[ 1715.095166@1] amvdec_h264 probe start.
+[ 1715.095279@1] 
+[ 1715.095283@1] vh264_init
+[ 1715.106107@1] vf_reg_provider:decoder.h264
+[ 1715.106168@1] vf_reg_provider:ppmgr
+[ 1715.137454@0] substream#0 ptr: df19d000 type: playback name: subdevice #0 interface: I2S
+[ 1715.138938@1] amvdec_h264 probe end.
+[ 1715.144931@0] ====== audio_set_aiubuf ======
+[ 1715.149234@0] I2S hw init,i2s mode 0
+[ 1715.151846@0] iec958 mode PCM16
+[ 1715.154511@0] aml_hw_iec958_init audio sr 48000 
+[ 1715.159228@0] IEC958 16bit
+[ 1715.161745@0] iec958 nodify hdmi audio type 1
+	[ 1715.292139@0] v264dec: aspect_ratio not available from source
+[ 1715.408237@0] di_init_buf: version 2013-10-15a, prog_proc_type 0, buf start 8d200000, size 2300000, buf(w1920,h1088) cur num 12 (available 14,  total 12) 
+	[ 1715.417069@0] vf_reg_provider:deinterlace
+	[ 1715.425531@0] pre_de_buf_config: source change: 0/0/0/0=>28672/1280/720/0
+	[ 1723.681927@0] [ethernet]Rx fifo over
+	[ 1727.260007@0] RxIdleAnt=AUX_ANT
+	[ 1742.191330@0] RxIdleAnt=MAIN_ANT
+
+	05的mac我们内部自己也分一下，免得重复出问题。
+
+	00:25:92:EE:83:A0 ----- 00:25:92:EE:83:AF
+
+	研发：
+	夏长锦    00:25:92:EE:83:A0
+	jay          00:25:92:EE:83:A1
+	闫强       00:25:92:EE:83:A2
+	文千       00:25:92:EE:83:A3
+	姜帝      00:25:92:EE:83:A4
+	鑫海      00:25:92:EE:83:A5
+	剩余     00:25:92:EE:83:A6/A7
+
+	测试
+	00:25:92:EE:83:A8 ----- 00:25:92:EE:83:AF
+00:25:92:ee:83:ae
+
+16、把抓取的数据包记录存到/tmp/fill文件中，当抓取100个数据包后就退出程序。
+# tcpdump –i eth0 -vnn -w  /tmp/fil1 -c 100
+ 
+17、从/tmp/fill记录中读取tcp协议的数据包
+# tcpdump –i eth0 -vnn -r  /tmp/fil1 tcp
+ 
+18、从/tmp/fill记录中读取包含10.10.10.58的数据包
+# tcpdump –i eth0 -vnn -r  /tmp/fil1 host  10.10.10.58
+
+
+	adb  59915991  99201299
+
+	ujours
+	14:3d:f2:19:d7:7d
+	Toujours
+	2014-9-24 16:25:08
+	还要改SN号
+	Toujours
+	2014-9-24 16:25:22
+	DMA30104140740066
+
+	5991
+
+	media.p2pplay.enable
+
+	switch hdmi
+	/sys/class/switch/hdmi/state
+
+	echo mac > /sys/class/aml_keys/aml_keys/key_name
+	echo 30303a32353a39323a45453a38333a4137 > /sys/class/aml_keys/aml_keys/key_write
+
+
+	make -C common O=../out/target/product/m201_th0/obj/KERNEL_OBJ ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- meson8b_th0_defconfig
+
+	sdc_burn ${sdcburncfg}
+
+	/sys/class/amhdmitx/amhdmitx0 # cat edid 
+
+	set ipaddr 10.28.5.88;set gatewayip 10.28.5.1;set serverip 10.28.5.86;tftp boot.img
+
+	setenv initargs root=/dev/nfs nfsroot=10.28.5.86:/s805 ip=10.28.5.88:10.28.5.86:10.28.5.1:255.255.255.0::eth0:off init=/init console=ttyS0,115200n8 no_console_suspend ramoops.mem_address=0x04e00000 ramoops.mem_size=0x100000 ramoops.record_size=0x8000 ramoops.console_size=0x4000 storage=1 cvbsdrv=1 vdaccfg=0xa000 logo=osd1,loaded,0x7900000,576cvbs,full hdmimode=1080p cvbsmode=576cvbs androidboot.firstboot=0 hdmitx=
+
+
+	IR_MENU_KEY
+	am start -n com.ampak.rftesttool/.RFTestTool
+
+
+	/home2/work/s805/uboot/build/tools/uclpack /home2/work/s805/uboot/build/u-boot-orig.bin /home2/work/s805/uboot/build/u-boot-comp.bin
+
+	UCL data compression library (v1.03, Jul 20 2004).
+	Copyright (C) 1996-2004 Markus Franz Xaver Johannes Oberhumer
+	http://www.oberhumer.com/opensource/ucl/
+
+uclpack: using block-size of 262144 bytes
+uclpack: algorithm NRV2D-99/7, compressed 721604 into 328858 bytes
+/home2/work/s805/uboot/build/tools/convert --soc m8b  -s /home2/work/s805/uboot/build/firmware.bin -i /home2/work/s805/uboot/build/u-boot-comp.bin -o /home2/work/s805/uboot/build/u-boot.bin
+
+
+417b4592330419e802fde46f0fe60ab467db6f58
+
+
+commit 785b37b34ff08d38dd3be986543217c297e98103
+Author: xiacj <changjin.xia@timehold.com.hk>
+Date:   Fri Sep 19 16:53:02 2014 +0800
+
+m201_th0: use persist.sys.usb.config to control adbd
+
+stop adbd: setprop persist.sys.usb.config mtp
+Change-Id: I0ff1ac49feb67cb041153f50db8c1fd6b5993c67
+
+commit 846c16b4ad5d1ff2371ea5d9526c61a53a1bee89
+Merge: 501fb83 785b37b
+Author: xiacj <changjin.xia@timehold.com.hk>
+Date:   Fri Sep 19 17:14:05 2014 +0800
+
+Merge "m201_th0: use persist.sys.usb.config to control adbd" into kk-timehold-0823
+
+commit 785b37b34ff08d38dd3be986543217c297e98103
+Author: xiacj <changjin.xia@timehold.com.hk>
+Date:   Fri Sep 19 16:53:02 2014 +0800
+
+m201_th0: use persist.sys.usb.config to control adbd
+
+stop adbd: setprop persist.sys.usb.config mtp
+start adbd: setprop persist.sys.usb.config mtp,adb
+
+Change-Id: I1820b7391fabee527d6a36813963fe9d437a05a6
+
+commit 40b654037e92d732d546c492e4a87f37a51455c8
+Author: ancient.yan <ancient.yan@timehold.com.hk>
+Date:   Fri Sep 12 18:10:11 2014 +0800
+
+add adb root in user version
+
+Change-Id: I6d9b5786dcf207ad439e9c5b0a98b3d5dcf7ecac
+
+commit 25709f14a385d480a4ccced7fc36fb677d17386e
+Merge: c5a00ed 86aafa1
+Author: xiacj <changjin.xia@timehold.com.hk>
+Date:   Fri Aug 22 09:48:45 2014 +0800
+
+Merge "m201_th0: add adb support" into kk-timehold-0818
+
+commit 86aafa1981b5917b6c5c7773656f3eed75c8a290
+Author: xiacj <changjin.xia@timehold.com.hk>
+Date:   Fri Aug 22 09:44:02 2014 +0800
+
+m201_th0: add adb support
+commit 148dc1b1e46fb264d2ada62352aa37ac844a63fe
+Author: ancient.yan <ancient.yan@timehold.com.hk>
+Date:   Fri Sep 12 18:04:55 2014 +0800
+
+add adb root in user version
+
+commit 33b23fb907062c09505496f0f51b5abdd3ed0160
+Author: ancient.yan <ancient.yan@timehold.com.hk>
+Date:   Tue Sep 30 15:22:31 2014 +0800
+
+don't compare UTC when ota update
+
+
+logo: TARGET_AMLOGIC_AML_LOGO := aml_logo.bmp
+FBIOPUT_VSCREENINFO
+
+
+
+1. uboot logo(720P UI和1080P UI都一样)
+
+	删掉device\amlogic\k200\res_pack\bootup这个文件;然后制作720p和1080p大小的两张bmp图片（必须为16位色，RGB 565格式），分别命名为bootup_720和bootup_1080。把这两张无后缀名的图片拷贝到device\amlogic\k200\res_pack/目录下，重编代码即可生效。
+
+	2. 开机动画
+
+	如果是用的720P UI，将device\amlogic\k200\bootanimation.zip里面的png图片全部换成720P大小，并将desc.txt中第一行前两个数字修改为“1280 720”
+
+	如果是用的1080P UI，将device\amlogic\k200\bootanimation.zip里面的png图片全部换成1080P大小，并将desc.txt中第一行前两个数字修改为“1920 1080”
+
+	"true".equals(SystemProperties.get("ro.project.youpeng")) == false
+
+
+
+- a/services/java/com/android/server/am/ActivityManagerService.java
++++ b/services/java/com/android/server/am/ActivityManagerService.java
+@@ -3919,6 +3919,10 @@ public final class ActivityManagerService extends ActivityManagerNative
+             clearProfilerLocked();
+			          }
+ 
++               RuntimeException e = new RuntimeException("here");
++               e.fillInStackTrace();
++               Slog.i(TAG, "Set LCD brightness: ", e);
++
+         onVideoPlayerCrashed(app);
+		  
+		          // Remove this application's activities from active lists.
+		 @@ -5283,6 +5287,10 @@ public final class ActivityManagerService extends ActivityManagerNative
+		                      isRestrictedBackupMode || !normalMode, app.persistent,
+							                       new Configuration(mConfiguration), app.compat, getCommonServicesLocked(),
+												                        mCoreSettingsObserver.getCoreSettingsLocked());
++                       Log.d("XXXX", "app name = " + processName);
++                       if (processName.equals("com.voole.vooledesktop")) {
+	+                               app.maxAdj = ProcessList.SYSTEM_ADJ + 1;
+	+                       }
+	             updateLruProcessLocked(app, false, null);
+				              app.lastRequestedGc = app.lastLowMemory = SystemClock.uptimeMillis();
+							           } catch (Exception e) {
+										   (END)
+
+
+
+diff --git a/board/amlogic/m8b_m201_v1_th0/m8b_m201_v1.c b/board/amlogic/m8b_m201_v1_th0/m8b_m201_v1.c
+index 48025c4..6ef752c 100755
+--- a/board/amlogic/m8b_m201_v1_th0/m8b_m201_v1.c
++++ b/board/amlogic/m8b_m201_v1_th0/m8b_m201_v1.c
+@@ -601,7 +601,7 @@ int board_init(void)
+        board_ir_init();
+#endif
+										    #ifdef CONFIG_USB_DWC_OTG_HCD
+										   -       board_usb_init(&g_usb_config_m6_skt_b,BOARD_USB_MODE_HOST);
+										   +       board_usb_init(&g_usb_config_m6_skt_a,BOARD_USB_MODE_HOST);
+										           board_usb_init(&g_usb_config_m6_skt_h,BOARD_USB_MODE_CHARGER);
+												    #endif /*CONFIG_USB_DWC_OTG_HCD*/
+
+
+
+
+
+	am start -n com.hktv.android.smarttv/.ui.activities.MainActivity
+	
+	am start -n com.voole.vooledesktop/.main.SplashActivity
+
+	 cat /system/bin/preinstall.sh                                
+#!/system/bin/sh
+	 am start -n com.example.text/.MainActivity
+
+
+	 am start -a android.intent.action.VIEW -d  http://www.google.cn/
+
+com.android.settings/.Settings
+
+	 am start -n  cn.cibntv.ott/com.epg.ui.activities.home.HomeTabActivity
+
+
+	 com.qiyi.tvplayer.drpeng/com.qiyi.video.ui.home.HomeActivity
+
+
+
+	 am start -n com.hiveview.bluelight/.activity.BlueLightActivity
+	 am start com.qiyi.tvplayer.drpeng/com.qiyi.video.ui.home.HomeActivity
+	 am start cn.cibntv.ott/com.epg.ui.activities.home.HomeTabActivity
+
+
+	 59915991
+
+ mount -o rw,remount /system;rm /system/bin/preinstall.sh
+
+mx/common/drivers/amlogic/hdmi/hdmi_tx$ vim hdmi_tx.c
+
+
+mx/common/customer/boards$ vi board-m6g18_th8.c
+
+
+本地多媒体播放列表：视频或图片，偶现遥控器焦点控制无法移动，偶现上下左右键无响应
+恢复条件：过2s以上就可以恢复
+t a/core/java/android/widget/AbsListView.java b/core/java/android/widget/AbsListView.java
+old mode 100644
+new mode 100755
+index 092f474..fefe660
+--- a/core/java/android/widget/AbsListView.java
++++ b/core/java/android/widget/AbsListView.java
+@@ -2527,7 +2527,8 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
+      * @return True if the selector should be shown
+	        */
+			     boolean shouldShowSelector() {
+					 -        return (!isInTouchMode()) || (touchModeDrawsInPressedState() && isPressed());
+					 +        //return (!isInTouchMode()) || (touchModeDrawsInPressedState() && isPressed());
+					 +        return (hasFocus() && !isInTouchMode()) || touchModeDrawsInPressedState();
+					      }
+
+
+
+
+	modified:   drivers/amlogic/amports/rdma.c
+#	modified:   drivers/amlogic/amports/vh264.c
+#	modified:   drivers/amlogic/amports/video.c
+				drivers/amlogic/deinterlace/deinterlace.c
+				fs/fat/namei_vfat.c
+#	modified:   sound/soc/aml/aml_pcm.c
+#	modified:   sound/soc/aml/aml_pcm.h
+
+monkey -p  com.android.settings -v 500
+
+				dumpsys media.audio_flinger
+
+00:15:18:01:81:31
+883be4eebc8eaa88683f6ffdbd45f869728779b9
+
+ir_led
+        CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<13);
+		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<29);
+
+sys_led
++		 gpio_amlogic_requst(NULL, GPIO_TEST_N);
++		 gpio_amlogic_direction_output(NULL, GPIO_TEST_N, 1);
+ 
+net_led
+
+                CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, ((1<<8)|(1<<10)));
+	            CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<2);
+	            CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<18);
+
++                               if(SystemProperties.getBoolean("ro.project.youpeng", false) )
+	+                               {
+		+                                       Intent intent = new Intent("android.power.KILL_APP");
+		+                                       mContext.sendBroadcast(intent);
+		+                               }
+
+回环网线制作
+
+. build/envsetup.sh;export PROJECT_TYPE=mobile PROJECT_ID=k21;lunch m200_iptv-user;make otapackage -j4
+
+am start -n kingyi.test/.TestMediaActivity
+
+
+
+
+
+
+
+
+
+集成一个apk到系统
+在工程 xxx.mk PRODUCT_PACKAGES += AppManager
+
+LOCAL_MODULE := AppManager                                                                                   ~                             
+LOCAL_MODULE_TAGS := optional                                                                                ~                             
+LOCAL_SRC_FILES := $(LOCAL_MODULE).apk                                                                       ~                             
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX) 
+LOCAL_CERTIFICATE := PRESIGNED  
+
+
+build.prop
+
+build/tools/buildinfo.sh
+Makefile
+PRODUCT_PROPERTY_OVERRIDES
+
+添加到工程mk  PRODUCT_PROPERTY_OVERRIDES += xxx.xxx.xxx
+
+=========================================================================
+2、 制作增量包，将Tools_efuse.apk以patch的方式安装到系统中。
+i. 制作增量包的方法：
+1. 制作之前确保代码已经编译过，即成功运行了 lunch 和make otapckage。
+2. cd bootable/recovery; 执行mm -B，生成updater。
+3. cd build/tools/releasetools，创建目录：patch/DATA/app/。
+4. 将Tools_efuse.apk拷贝到patch/DATA/app/下面。
+5. 修改build/tools/releasetools/default_filesystem_config.txt文件，在末尾增加：
+data/app/Tools_efuse.apk 1000 1000 644
+6. 在build/tools/releasetools下执行：  
+ ./aml_update_packer patch patch.zip
+ 在当前目录下生成patch.zip，即为生成的增量包。
+
+ii. 升级增量包
+1. 将增量包拷入到U盘，插入平台
+2. 进入我的应用，选择“备份&升级”，选择zip增量包，选择升级，升级成功后，Tools_efuse.apk会放到/data/app/下，做下恢复出厂设置后，就会删除Tools_efuse.apk。
+
+
+ =============================================================================
+
+
+ common :git revert a4a1897e416a92f642157570efac1b913257ac4b
+
+sys_led
++               CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, (1<<3)|(1<<13)|(1<<31));
++               CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<13);
++               SET_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<29);
+
+
+===========================================
+
+ 待机
+
+arch/arm/mach-meson8b/pm.c
+	meson_pm_probe
+		suspend_set_ops(&meson_pm_ops);
+			meson_pm_enter
+				meson_pm_suspend
+					meson_power_suspend
+common/arch/arm/mach-meson8b/power_suspend.c
+					meson_power_suspend
+uboot/arch/arm/cpu/aml_meson/m8b/firmware/arc_power/arc_pwr.c 
+
+
+
+
+ 1 set input 0 set output
+
+
+         CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, (1<<11)|(1<<25));
+388         CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<1);                                                                                        
+389         CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<17);
+
+
+
+
+
+
+aml_set_reg32_mask(P_PERIPHS_PIN_MUX_9,0x1<<19);//set mode GPIOX_10-->CLK_OUT3
+
+   setbits_le32(P_AO_GPIO_O_EN_N, (1 << 3));                           // GPIOAO_3 as power key input
+   526     clrbits_le32(P_AO_RTI_PIN_MUX_REG, ((1 << 7)|(1 << 9)|(1 << 22)));  // clear pinmux as gpio function
+
+set GPIODV_29 H
+
+           clrbits_le32(P_PERIPHS_PIN_MUX_7, (1 << 25)|(1 << 26));
+           clrbits_le32(P_PERIPHS_PIN_MUX_3, (1 << 25));
+           clrbits_le32(P_PERIPHS_PIN_MUX_9, (1 << 26));
+           aml_set_reg32_bits(CBUS_REG_ADDR(0x2012),0,29,1);       
+           aml_set_reg32_bits(CBUS_REG_ADDR(0x2013),1,29,1);       
+
+
+
+commit bb76a8fe23793720a81e22a04a6136a700005737
+Author: jay <jay.lian@timehold.com.hk>
+Date:   Tue Sep 16 10:46:03 2014 +0800
+
+    common/drivers/amlogic/ethernet: light net led
+    
+    Change-Id: Ia69c7dfdfd443230d096946c66cc461d4bdccef7
+
+diff --git a/arch/arm/mach-meson8b/pm.c b/arch/arm/mach-meson8b/pm.c
+index 7cb6fad..5430351 100755
+--- a/arch/arm/mach-meson8b/pm.c
++++ b/arch/arm/mach-meson8b/pm.c
+@@ -367,6 +367,11 @@ static void m6ref_set_vccx2(int power_on)
+         CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<13);
+         SET_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<29);
+ 		#endif
++        #ifdef CONFIG_MESON8B_TH0
++		CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, ((1<<8)|(1<<10)));
++		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<2);
++		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<18);
++		#endif //disable netled when stanby
+         #if 0
+ 		printk("code run here\n");
+ 		CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, (1<<11)|(1<<25));
+diff --git a/drivers/amlogic/ethernet/am_net8218.c b/drivers/amlogic/ethernet/am_net8218.c
+index a2738be..bb2c1ae 100755
+--- a/drivers/amlogic/ethernet/am_net8218.c
++++ b/drivers/amlogic/ethernet/am_net8218.c
+@@ -49,6 +49,17 @@
+ #include "am_net8218.h"
+ #include <mach/mod_gate.h>
+ 
++#include <plat/io.h>
++#include <linux/proc_fs.h>
++#include <linux/syscalls.h>
++#include <linux/kmod.h>
++#include <asm/uaccess.h>
++#include <linux/vmalloc.h>
++#include <linux/fs.h>
++#include <linux/completion.h>
++#include <asm/system.h>
++#include <linux/init.h>
++
+ #define MODULE_NAME "ethernet"
+ #define DRIVER_NAME "ethernet"
+ 
+@@ -120,6 +131,7 @@ static int reset_mac(struct net_device *dev);
+ static void am_net_dump_macreg(void);
+ static void read_macreg(void);
+ 
++static int init_proc_exec(void);
+ /* --------------------------------------------------------------------------*/
+ /**
+  * @brief  data_dump
+@@ -3142,5 +3154,40 @@ static void __exit am_net_exit(void)
+ 
+ module_init(am_net_init);
+ module_exit(am_net_exit);
++static int exec_write_proc(struct file *file, const char __user *buffer, unsigned long count, void *data)
++{
++    char buf[128];
++	memset(buf, 0, sizeof(buf));
++	copy_from_user(buf, buffer,count);
++	if(strncmp(buf,"on", 2)==0)
++	{
++		printk("____________net_state______on\n");
++		#ifdef CONFIG_MESON8B_TH0
++		CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, ((1<<8)|(1<<10)));
++		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<2);
++		SET_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<18);
++		#endif
++	}
++	else if (strncmp(buf,"off", 3)==0)
++	{
++		printk("____________net_state______off\n");
++		#ifdef CONFIG_MESON8B_TH0
++		CLEAR_AOBUS_REG_MASK(AO_RTI_PIN_MUX_REG, ((1<<8)|(1<<10)));
++		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<2);
++		CLEAR_AOBUS_REG_MASK(AO_GPIO_O_EN_N, 1<<18);
++		#endif
++	}
++	return count;
++}
++static const struct file_operations netstate_proc_fops = {
++    .owner = THIS_MODULE,
++	.write = exec_write_proc,
++};
++static int __init init_proc_exec(void)
++{
++	struct proc_dir_entry *entry;	
+ 
+-
++	entry = proc_create_data("net_state", 0777, NULL,&netstate_proc_fops,NULL);
++	return 0;
++}
++module_init(init_proc_exec);
+
+
+
+module_init(am_net_init);
+	static int __init am_net_init(void)
+	3119 {
+	3120     if (platform_driver_register(&ethernet_driver)) {
+						static struct platform_driver ethernet_driver = {                                                                                         
+						3096     .probe   = ethernet_probe,
+						3097     .remove  = ethernet_remove,
+						3098 #ifndef  CONFIG_PM
+						3099     .suspend = ethernet_suspend,
+						3100     .resume  = ethernet_resume,
+						3101 #endif
+						3102     .driver  = {
+						3103         .name = "meson-eth",
+						3104         .of_match_table = eth_dt_match,
+						3105     }
+						3106 };
+								
+								
+===========================================================================================
+添加 sys/class 下节点
+
+CLASS_ATTR
+
+static struct class *xxxx_sys_class;
+
+在xxx_probe 添加
+	xxxx_sys_class = class_create(THIS_MODULE, DRIVER_NAME);
+	ret = class_create_file(xxxx_sys_class, &class_attr_xxxx);		
+
+
+	static CLASS_ATTR(linkshehe, S_IWUSR | S_IRUGO, xxxx_show, xxxx_store);
+
+read:	static ssize_t xxxx_show(struct class *class, struct class_attribute *attr, char *buf)
+
+write:	static ssize_t xxxx_store(struct class *class, struct class_attribute *attr, const char *buf, size_t count)
+
+of_device_id
+of_get_property
+
+of_property_read
+
+ DEVICE_PACKAGE_OVERLAYS := $(TARGET_PRODUCT_DIR)/overlay
+
+
+uart
+
+cat ./proc/kallsyms | grep register
+
+
+
+
+
+4 EXPORT_SYMBOL(uart_write_wakeup);
+		2815 EXPORT_SYMBOL(uart_register_driver);                                                                                                      
+		2816 EXPORT_SYMBOL(uart_unregister_driver);
+		2817 EXPORT_SYMBOL(uart_suspend_port);
+		2818 EXPORT_SYMBOL(uart_resume_port);
+		2819 EXPORT_SYMBOL(uart_add_one_port);
+		2820 EXPORT_SYMBOL(uart_remove_one_port);
+
+arch/x86/mm/kmmio.c:446:EXPORT_SYMBOL(register_kmmio_probe);
+arch/parisc/kernel/drivers.c:181:EXPORT_SYMBOL(register_parisc_driver);
+arch/sh/drivers/dma/dma-api.c:273:EXPORT_SYMBOL(register_chan_caps);
+arch/sh/drivers/dma/dma-api.c:406:EXPORT_SYMBOL(register_dmac);
+arch/sh/kernel/cpu/irq/ipr.c:83:EXPORT_SYMBOL(register_ipr_controller);
+arch/s390/kernel/irq.c:217:EXPORT_SYMBOL(register_external_interrupt);
+arch/s390/kernel/sysinfo.c:281:EXPORT_SYMBOL(register_service_level);
+block/genhd.c:339:EXPORT_SYMBOL(register_blkdev);
+grep: customer/.git/svn: No such file or directory
+		  drivers/acpi/event.c:138:EXPORT_SYMBOL(register_acpi_notifier);
+	  drivers/md/md.c:8666:EXPORT_SYMBOL(register_md_personality);
+	  drivers/video/fbmem.c:1981:EXPORT_SYMBOL(register_framebuffer);
+	  drivers/video/fbmem.c:1984:EXPORT_SYMBOL(registered_fb);
+	  drivers/xen/xen-selfballoon.c:503:EXPORT_SYMBOL(register_xen_selfballooning);
+	  drivers/isdn/i4l/isdn_common.c:2216:EXPORT_SYMBOL(register_isdn);
+	  drivers/isdn/capi/kcapi.c:602:EXPORT_SYMBOL(register_capi_driver);
+	  drivers/mtd/chips/chipreg.c:97:EXPORT_SYMBOL(register_mtd_chip_driver);
+	  drivers/net/ppp/pppox.c:67:EXPORT_SYMBOL(register_pppox_proto);
+	  drivers/net/wan/hdlc.c:347:EXPORT_SYMBOL(register_hdlc_protocol);
+	  drivers/rpmsg/virtio_rpmsg_bus.c:447:EXPORT_SYMBOL(register_rpmsg_driver);
+	  drivers/tty/sysrq.c:1010:EXPORT_SYMBOL(register_sysrq_key);
+	  drivers/tty/vt/vt.c:3598:EXPORT_SYMBOL(register_con_driver);
+	  drivers/amlogic/uart/uart/meson_uart.c:132:EXPORT_SYMBOL(register_bt_wake_ops);
+	  drivers/amlogic/thermal/amlogic_thermal.c:385:EXPORT_SYMBOL(register_gpu_freq_info);
+	  drivers/s390/char/tape_class.c:104:EXPORT_SYMBOL(register_tape_dev);
+	  drivers/base/memory.c:51:EXPORT_SYMBOL(register_memory_notifier);
+	  drivers/base/memory.c:65:EXPORT_SYMBOL(register_memory_isolate_notifier);
+	  drivers/cdrom/cdrom.c:3393:EXPORT_SYMBOL(register_cdrom);
+	  fs/char_dev.c:582:EXPORT_SYMBOL(register_chrdev_region);
+	  fs/nls/nls_base.c:541:EXPORT_SYMBOL(register_nls);
+	  fs/quota/dquot.c:172:EXPORT_SYMBOL(register_quota_format);
+	  fs/filesystems.c:87:EXPORT_SYMBOL(register_filesystem);
+	  fs/proc/proc_sysctl.c:1272:EXPORT_SYMBOL(register_sysctl);
+	  fs/proc/proc_sysctl.c:1468:EXPORT_SYMBOL(register_sysctl_paths);
+	  fs/proc/proc_sysctl.c:1485:EXPORT_SYMBOL(register_sysctl_table);
+	  kernel/exec_domain.c:193:EXPORT_SYMBOL(register_exec_domain);
+	  kernel/sys.c:348:EXPORT_SYMBOL(register_reboot_notifier);
+	  kernel/power/earlysuspend.c:63:EXPORT_SYMBOL(register_early_suspend);
+	  kernel/printk.c:2408:EXPORT_SYMBOL(register_console);
+	  kernel/module.c:165:EXPORT_SYMBOL(register_module_notifier);
+	  kernel/cpu.c:194:EXPORT_SYMBOL(register_cpu_notifier);
+	  mm/vmscan.c:202:EXPORT_SYMBOL(register_shrinker);
+	  net/ipv6/addrconf_core.c:87:EXPORT_SYMBOL(register_inet6addr_notifier);
+	  net/802/psnap.c:96:EXPORT_SYMBOL(register_snap_client);
+	  net/802/p8022.c:63:EXPORT_SYMBOL(register_8022_client);
+	  net/dcb/dcbevent.c:31:EXPORT_SYMBOL(register_dcbevent_notifier);
+	  net/core/dev_ioctl.c:59:EXPORT_SYMBOL(register_gifconf);
+	  net/core/dev.c:1502:EXPORT_SYMBOL(register_netdevice_notifier);
+	  net/core/dev.c:5340:EXPORT_SYMBOL(register_netdevice);
+	  net/core/dev.c:5405:EXPORT_SYMBOL(register_netdev);
+	  net/atm/ioctl.c:40:EXPORT_SYMBOL(register_atm_ioctl);
+	  net/ipv4/devinet.c:1282:EXPORT_SYMBOL(register_inetaddr_notifier);
+	  net/sched/sch_api.c:182:EXPORT_SYMBOL(register_qdisc);
+	  net/sched/cls_api.c:79:EXPORT_SYMBOL(register_tcf_proto_ops);
+	  net/netfilter/ipvs/ip_vs_core.c:58:EXPORT_SYMBOL(register_ip_vs_scheduler);
+	  net/netfilter/ipvs/ip_vs_app.c:41:EXPORT_SYMBOL(register_ip_vs_app);
+	  net/netfilter/ipvs/ip_vs_app.c:43:EXPORT_SYMBOL(register_ip_vs_app_inc);
+	  net/wireless/reg.c:1718:EXPORT_SYMBOL(regulatory_hint);
+	  security/keys/key.c:1056:EXPORT_SYMBOL(register_key_type);
+	  sound/sound_core.c:426:EXPORT_SYMBOL(register_sound_special_device);
+	  sound/sound_core.c:433:EXPORT_SYMBOL(register_sound_special);
+	  sound/sound_core.c:453:EXPORT_SYMBOL(register_sound_mixer);
+	  sound/sound_core.c:473:EXPORT_SYMBOL(register_sound_midi);
+	  sound/sound_core.c:501:EXPORT_SYMBOL(register_sound_dsp);
+
+
+
+com.example.junle/com.xolo.junle.calendar.CalenderMain
+
+cn.com.factorytest/.MainActivity
+am start com.hpplay.happyplay.aw/com.hpplay.happyplay.box.AllcastMainSet
+
+1213
+
+435_sundy
+admin1306
+am start com.hpplay.happyplay.aw/com.hpplay.happyplay.box.AllcastMainSet
+B0:D5:9D:19:EB:9C
+
+
+mount | grep vfat | awk '{print $2}'
+
+
+\\10.28.11.7
+
+Hank 2015-3-23 17:30:44
+sw
+soft8205
+
+Hank 2015-3-23 17:31:10
+\\10.28.11.7\anyone\CIBN
+
+
+
+ File dir = new File(USB_PATH);
+	 if (dir.exists() && dir.isDirectory()) { 
+		 for (File file : dir.listFiles()) {
+			 if (file.isDirectory()) {
+				 String path = file.getAbsolutePath();
+				 Log.v("aaaaaaaaa",path);
+			 }
+		 }
+		 }
+																				 }
+										 }
+						 }
+
+
+
+SharedPreferences mySharedPreferences = getSharedPreferences("test",
+		Activity.MODE_PRIVATE);
+SharedPreferences.Editor editor = mySharedPreferences.edit();
+editor.putString("name", "karl");
+editor.putString("habit", "sleep");
+editor.commit(); 
+
+
+
+SharedPreferences sharedPreferences = getSharedPreferences("test",
+		Activity.MODE_PRIVATE);
+String name = sharedPreferences.getString("name", "");
+String habit = sharedPreferences.getString("habit", ""); 
+
+$(info echo -e "\033[31m $BUILD_APK \033[0m")
+
+ cat /sys/class/graphics/fb0/window_axis; cat /data/data/com.mbox.settings/shared_prefs/GGSETTINGS.xml
+
+
+
+
+
+
+
+ 在11.04环境下成功：
+ （修改删除文件前请先做好备份）
+
+ $ sudo emacs /etc/NetworkManager/NetworkManager.conf 
+ 修改 managed=false为true
+
+ 修改/etc/network/interfaces，只保留：
+ auto lo
+ iface lo inet loopback
+
+ 删除/etc/resolv.conf
+
+
+ 最后$ sudo /etc/init.d/network-manager restart
+
+4105eeee2d1ccb0cf3be57b26b9fe37b
+
+--update_package=/cache/ota.zip
+
+ svn co https://120.24.208.159/svn/tengwei/project/meizgapp/appcode/MICHIGAO --username zhaojf --password 123
+
+
+input text 002592EE83A4
+ am start com.android.chrome/com.google.android.apps.chrome.Main
+
+
+
+ core/java/android/view/VolumePanel.java
+
+
+sed -i "/ro.build.date.utc=/d" /tmp/build.prop 
+
+sed -i '$a\ro.build.date.utc=xxxx'
+
+diff --git a/core/Makefile b/core/Makefile
+index 7bac946..cf097d6 100755
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -846,6 +846,7 @@ endif
+        cp $(RECOVERY_INSTALL_OTA_KEYS) $(TARGET_RECOVERY_ROOT_OUT)/res/keys
+		        cat $(INSTALLED_DEFAULT_PROP_TARGET) $(recovery_build_prop) \
+					                > $(TARGET_RECOVERY_ROOT_OUT)/default.prop
+									+       $(hide) sed -i 's/ro.build.date.utc=.*/ro.build.date.utc=xxxxx/g' $(TARGET_RECOVERY_ROOT_OUT)/default.prop
+									        $(hide) $(MKBOOTFS) $(TARGET_RECOVERY_ROOT_OUT) | $(MINIGZIP) > $(recovery_ramdisk)
+	        $(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@
+			        $(hide) $(call assert-max-image-size,$@,$(BOARD_RECOVERYIMAGE_PARTITION_SIZE),raw)
+
+
+
+
+Home按键无响应
+
+Provision.apk被移除
+
+将里面代码移到 开机向导
+
+             if (pkgName == null) {
+-                return mActivities.queryIntent(intent, resolvedType, flags, userId);
++                               boolean bIsFixHome = SystemProperties.getBoolean("ro.fix.home", false);
++                               if(!bIsFixHome)
++                               {
++                                       return mActivities.queryIntent(intent, resolvedType, flags, userId); 
++                               }
++                               else
++                               {
++                                       List<ResolveInfo> lst = mActivities.queryIntent(intent, resolvedType, flags, userId);
++                                       
++                                       if("android.intent.action.MAIN".equals(intent.getAction())) {
++                                               Set<String> cats = intent.getCategories();
++                                               if(null != cats && cats.contains("android.intent.category.HOME")) {
++                                                       List<ResolveInfo> blackList = new ArrayList<ResolveInfo>();
++                                                       for (ResolveInfo r : lst) {
++                                                               if(null != r.activityInfo && null != r.activityInfo.name &&
++                                                                       (r.activityInfo.name.startsWith("com.epg.ui.activities.home.HomeTabActi
++                                                                       r.activityInfo.name.startsWith("com.mbx.settingsmbox") ) )
++                                                               {
++                                                                       // allow
++                                                               } else 
++                                                               {
++                                                                       // block
++                                                                       blackList.add(r);
++                                                                       Slog.i(TAG, "block home apk:"+r);
++                                                               }
++                                                       }
++                                                       for (ResolveInfo r : blackList) {
++                                                               lst.remove(r);
++                                                       }
++                                               }
++                                       }
++                                       
++                                       return lst;
++                               }
+
+
+
+
+在 data/system/package.xml  写禁止启动该组件
+
+         PackageManager pm = getPackageManager();
+		         ComponentName name = new ComponentName(this, OobeActivity.class);
+				         pm.setComponentEnabledSetting(name, PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+								                 PackageManager.DONT_KILL_APP);
+
+
+
+
