@@ -86,7 +86,7 @@ root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    a
 
 timehold 0823
 
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823-0113 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 
 电信/OTT代码
@@ -203,6 +203,9 @@ git remote show gerrit
 repo manifest -r -o .repo/manifests/test-ok.xml 
 repo init -m test-ok.xml 
 
+repo forall -c "git reset --hard"
+
+
 repo manifest -o - | grep default
 
 git init
@@ -261,6 +264,8 @@ git config --global difftool.bc3.path "/usr/bin/bcompare"
 
 git log --pretty=oneline 文件名
 
+git log --after=2015-04-01
+git log --before=2015-04-01
 
 
 ./gerrit_th.sh zhaoxinhai 
@@ -396,6 +401,7 @@ adb pull /data/data/com.android.providers.settings/databases/settings.db
 screencap -p aaa.png
 screenrecord 
 
+.schema
 select * from system
 update Secure set value=1 where name = 'eth_on';
 
@@ -559,8 +565,11 @@ uboot: gset GPIODV_29 out high
 ===============================================================
 
 tar czvfp - m8iptv.tar.gz | split -b 3000m
-
 cat xa* > m8iptv.tar.gz
+
+
+rar a -v1024k 目的文件 原文件(路径)
+
 
 ==================================================================
 MediaPlayer播放dump流
@@ -603,6 +612,14 @@ get tftp -g -l boot.img 192.168.2.242
 ftpget
 ftpget -u ftp-common -p timehold 27.154.234.214 README
 
+
+
+
+Busybox内置的tftpd, ftpd, telnetd, udhcpd, udhcpc配置 
+http://blog.csdn.net/tqyou85/article/details/6240975
+
+
+
 tar czf m8iptv_youpeng.tar.gz * --exclude .repo --exclude .git --exclude out
 
 
@@ -640,3 +657,21 @@ am broadcast -a airplay.amlogic.stopService
 
 Hank 2015-3-27 14:52:19
 am broadcast -a airplay.amlogic.startService
+
+================================================
+pppoe
+
+add address=xxx.xxx.xxx.xxx/xx interface=ether1
+
+
+pppoe -p /data/misc/etc/ppp/pppoe.pid -I eth0 -T 80 -U -m 1412
+
+拨号
+sudo pppoe-setup 
+sudo pppoe-start
+
+chown 1000:1000 xxx         system:system
+
+ssh hank.chen@10.28.8.15
+hank.chen
+Linux2010
