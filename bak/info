@@ -799,7 +799,7 @@ input text 002592EE83A4
 
 
  core/java/android/view/VolumePanel.java
-
+select value from system where name = "volume_music_speaker";
 
 sed -i "/ro.build.date.utc=/d" /tmp/build.prop 
 
@@ -824,6 +824,7 @@ index 7bac946..cf097d6 100755
 Home按键无响应
 
 Provision.apk被移除
+http://blog.csdn.net/louyong0571/article/details/39399287
 
 将里面代码移到 开机向导
 
@@ -875,5 +876,48 @@ Provision.apk被移除
 								                 PackageManager.DONT_KILL_APP);
 
 
+在Android手机中，如果我们长按Home键会弹出“最近应用程序”的界面，我们的应用就会显示到这个界面里面。但如果我们不想让我们的应用程序显示在这里呢？
+
+	当然有办法！！在应用程序的AndroidManifest.xml中，在第一个启动的对应的Activity申明中加入以下代码：
+android:excludeFromRecents="true"
 
 
+
+
+
+service一直被杀问题
+http://itleaks.me/?p=33
+
+  如果Service等的AndroidManifest中声明为android:exported="false"
+  则该服务不能够跨进程使用。
+    Permission Denied！
+	  需要改为：android:exported="true" 
+
+最近在做一个项目时，发现一旦所有activity退到后台，自己的service总是被杀掉。
+后来以为通过START_STICKY，setForground等来提高优先级以减少被杀的概率，结果还是被杀。
+后来才发现，根本的原因视因为我的这个service的exported=”false“导致的，去掉这个标志，立马正常了。
+
+
+
+
+
+cibn: 
+      地址  :  timehold.wicp.net
+	        端口  :  7878
+			      账号  :  sftp-cibn
+				        密码  :  cibndld369
+
+
+需要EPG修改：
+final Intent intent = new Intent();
+  intent.setClassName("com.mbox.settings", "com.mbox.settings.MboxSettingActivity");
+  intent.putExtra(":android:show_fragment", "com.mbox.settings.fragment.EthSettingsFragment");
+  startActivity(intent);
+
+
+service.adb.tcp.port=31015
+
+
+075586315301@163.gd
+
+	IDYUIQBG
