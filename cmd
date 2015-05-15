@@ -86,11 +86,13 @@ root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    a
 
 timehold 0823
 
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823-0113 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 
 电信/OTT代码
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+ repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20150414.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 移动/OTT代码  m201
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-cbc-20150122.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
@@ -401,6 +403,7 @@ adb pull /data/data/com.android.providers.settings/databases/settings.db
 screencap -p aaa.png
 screenrecord 
 
+.schema
 select * from system
 update Secure set value=1 where name = 'eth_on';
 
@@ -611,6 +614,14 @@ get tftp -g -l boot.img 192.168.2.242
 ftpget
 ftpget -u ftp-common -p timehold 27.154.234.214 README
 
+
+
+
+Busybox内置的tftpd, ftpd, telnetd, udhcpd, udhcpc配置 
+http://blog.csdn.net/tqyou85/article/details/6240975
+
+
+
 tar czf m8iptv_youpeng.tar.gz * --exclude .repo --exclude .git --exclude out
 
 
@@ -666,3 +677,32 @@ chown 1000:1000 xxx         system:system
 ssh hank.chen@10.28.8.15
 hank.chen
 Linux2010
+
+sudo mount.cifs //10.28.8.15/nfsroot/hank.chen/kitkat /mnt/ -o username=hank.chen,password=Linux2010,rw,
+
+================================================= issue ==================================================
+
+一：编译源码不要生成odex 问题： 
+    1： 禁止apk生成odex： 修改../build/core/package.mk   
+	LOCAL_DEX_PREOPT := ture  ->  LOCAL_DEX_PREOPT := false
+	2： 禁止jar包生成odex： 修改/build/core/java_library.mk  
+	LOCAL_DEX_PREOPT := ture  ->  LOCAL_DEX_PREOPT := false  
+
+
+二：修改framework之后直接make -j4编译后，模拟器运行不起来问题：
+	进入../framework/base目录下执行： mm 先编译 framework，
+	然后cd ../../退至工程根目录，执行 make systemimage  
+
+
+=============================================================================================================
+最近要把apk放进system/app下进行预装，现在可以运行，apk升级后也正常使用，但是当机子重启后apk就变回了系统原带的那个版本，我重现了现象，发现apk升级后是装在data/app下，而不是替换system/app下旧apk，重新开机后data/app下的apk就会删掉，系统用回自带的apk，就是不能升级使用，这个问题应该怎么解决？
+
+
+apk的version号判断出问题，我的情况是升级前后的apk的version相同，所以有以下改法：
+在frameworks/base/services/java/com/android/server/pm/PackageManagerService.java中的scanPackageLI会判断系统原带apk和升级后apk的versionCode，改为pkg.mVersionCode <= ps.versionCode（原来为 < ）；这样子系统重启，apk就不会还原。
+
+
+
+
+
+
