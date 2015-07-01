@@ -15,6 +15,9 @@ http://27.154.234.214:8088/job/mxbox-pbs-1225/
 mount -rw -o remount /dev/block/system /system/
 mount -o rw,remount /system
 
+busybox mount -t nfs -o ro,nolock 192.168.1.103:/nfsboot /mnt/sdcard/nfs
+
+
   usb start;fatload usb 0 82000000 u-boot;sf probe 2;sf erase 0 60000;sf write 82000000 0 60000
 
 ssh XXX@timehold.f3322.org -p 8989
@@ -82,9 +85,20 @@ root@android:/sys/class/aml_keys/aml_keys # echo mac > key_name
 root@android:/sys/class/aml_keys/aml_keys # cat key_read
 root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    at        
 
+
+0428 mx
+
+repo init -u ssh://git@27.154.234.214/repository/amlogic/mx-jellybean-mr1-box-ol/jellybean/platform/manifest.git -b jb-mr1-timehold-new-0428 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+
+pbs 1225 mx  g18_th8
+
  repo init -u ssh://git@27.154.234.214/repository/amlogic/mx-jellybean-mr1-box-pbs/platform/manifest.git -b jb-mr1-1225-timehold --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 timehold 0823
+
+repo init -u ssh://git@192.168.2.3/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-amlogic-sync -m openlinux_kk-amlogic_20140823_patch_150313.xml --repo-url=ssh://git@192.168.2.3/android/git-repo.git
+
 
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
@@ -100,6 +114,9 @@ repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/
 
 mx浙江移动   g18
 repo init -u ssh://git@27.154.234.214/repository/amlogic/mxbox-jb-iptv/platform/manifest.git -b jb-mr1-amlogic-chinamobile-20140516-sync -m jb-mr1-amlogic-chinamobile-20141110.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+
+repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 
 s812 n200 
@@ -156,6 +173,54 @@ M201公版+移动IPTV:
 k21项目+电信IPTV:
 
 . build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=k21;lunch m201-user;make otapackage -j24
+
+
+
+
+
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-beijing_cu_20150625.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+M201公版(M8 baby)+联通IPTV:
+. build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201;lunch m201-user;make otapackage -j24
+M201C公版(M8 baby)+联通IPTV:
+. build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201C;lunch m201-user;make otapackage -j24
+N200公版(S812)+联通IPTV:
+. build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=k200b;lunch k200-user;make otapackage -j24
+
+Amlogic 0313
+----------------
+给客户的
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-amlogic-sync -m openlinux_kk-amlogic_20140823_patch_150313.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+
+自己开发
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platform/manifest.git -b kk-amlogic-sync  -m openlinux_kk-amlogic_20140823_patch_150313.xml  --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+cibn
+
+国广新 设置SDK
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platform/manifest.git -b kk-timehold-0823 -m default-cibn-0108-ns.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+国广旧设置SDK
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platform/manifest.git -b kk-timehold-0823 -m default-cibn.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+国广SETTING apk
+git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/Settings_cibn    
+
+产测apk
+git clone ssh://git@timehold.f3322.org/timehold/TH-factoryTest.git -b kk-timehold-0823-cibn 
+
+git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/cibn_vendor
+git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/logo_api_demo
+
+git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/libupdatelogo
+
+
+
+
+
 
 ---------------------------------------------------------------------------------------------------------
 3. 移动IPTV设置mac和serialno的方法(以cntv的序列号和mac为例)：
@@ -323,6 +388,11 @@ cat res-package.img > /dev/block/logo
  nand info
  nand erase 2000000 800000
  nand write 82000000 2000000 800000
+
+erase bootloader
+
+dd if=/dev/zero of=/dev/block/bootloader
+
 
 
 awk {print } < adbkey.pub | openssl base64 -A -d -a | openssl md5 -c | awk {print } | tr [:lower:] [:upper:]
@@ -514,6 +584,14 @@ crash:
 arm-linux-gnueabihf-objdump -dS xxx.so
 
 
+su:
+
+https://github.com/ChainsDD/Superuser
+
+https://github.com/ChainsDD/su-binary.git
+http://blog.csdn.net/a332324956/article/details/9139927
+
+
 vim
 supertab git clone http://github.com/ervandew/supertab 
 
@@ -525,10 +603,17 @@ OTA_update
 
 uboot source_code   git clone git://git.denx.de/u-boot.git
 kernel source_code git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-
 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux.git
+
+rt-thread  source_code  https://github.com/RT-Thread/rt-thread.git
+http://www.cnblogs.com/wzc0066/archive/2013/03/08/2949300.html
+
+xbmc
+
+git clone git://github.com/xbmc/xbmc.git
+http://blog.csdn.net/zangcf/article/details/18049495
 
 
 busybox git://git.busybox.net/busybox
@@ -601,6 +686,12 @@ hls dump 流
 3. kill iptv apk( ps 查看pid)
 	4. 播放，录流位于/storage/external_storage/sda1/Live0.ts
 =================================================================
+
+bootplayer url
+
+am start -n com.android.gallery3d/com.android.gallery3d.app.MovieActivity "rtsp://123.147.112.181:554/04000001/01000000004000000000000000000285?AuthInfo=xxx"
+
+
 tftp
 
 /etc/default/tftpd-hpa
@@ -680,6 +771,19 @@ Linux2010
 
 sudo mount.cifs //10.28.8.15/nfsroot/hank.chen/kitkat /mnt/ -o username=hank.chen,password=Linux2010,rw,
 
+
+10.28.8.22
+hank.chen
+Linux2010
+
+
+
+transmission
+
+https://github.com/shilingkai/transmission_android
+
+
+
 ================================================= issue ==================================================
 
 一：编译源码不要生成odex 问题： 
@@ -702,7 +806,93 @@ apk的version号判断出问题，我的情况是升级前后的apk的version相
 在frameworks/base/services/java/com/android/server/pm/PackageManagerService.java中的scanPackageLI会判断系统原带apk和升级后apk的versionCode，改为pkg.mVersionCode <= ps.versionCode（原来为 < ）；这样子系统重启，apk就不会还原。
 
 
+uinput
+http://blog.chinaunix.net/uid-25885064-id-3442484.html
+
+android 添加按键
+
+http://blog.itpub.net/7232789/viewspace-690479/
+
+Vendxxxx
+
+api/current.txt:27188:    field public static final int KEYCODE_SETTINGS = 176; // 0xb0
+core/java/android/view/KeyEvent.java:516:    public static final int KEYCODE_SETTINGS        = 176;
+core/java/android/view/KeyEvent.java:988:        names.append(KEYCODE_SETTINGS, "KEYCODE_SETTINGS");
+core/res/res/values/attrs.xml:1523:        <enum name="KEYCODE_SETTINGS" value="176" />
+
+ 
+Android 开关机动画的实现及支持MP4视频播放
+http://blog.csdn.net/deeplee021/article/details/41042985
+
+打开 adbd
+http://blog.csdn.net/deeplee021/article/details/23546949
+
+test wget
+http://down02.putclub.com/virtual/backup/update/sest/201406/01/putclub.com_20140601apnews.mp3
 
 
+HDMI SPDIF
+
+if [ "$(getprop ubootenv.var.digitaudiooutput)" = "SPDIF passthrough" ] ; then
+    echo 2 > /sys/class/audiodsp/digital_raw
+elif [ "$(getprop ubootenv.var.digitaudiooutput)" = "HDMI passthrough" ] ; then  
+    echo 3 > /sys/class/audiodsp/digital_raw
+else
+    echo 0 > /sys/class/audiodsp/digital_raw
+fi
+
+修改android 最大音量值
+
+diff --git a/media/java/android/media/AudioService.java b/media/java/android/media/AudioService.java                                           
+index 20a691b..601b327 100755
+--- a/media/java/android/media/AudioService.java
++++ b/media/java/android/media/AudioService.java
+@@ -213,7 +213,7 @@ public class AudioService extends IAudioService.Stub {
+	         5,  // STREAM_VOICE_CALL
+			 7,  // STREAM_SYSTEM
+			 7,  // STREAM_RING
+    -        15, // STREAM_MUSIC
+    +        60, // STREAM_MUSIC
+			 7,  // STREAM_ALARM
+			 7,  // STREAM_NOTIFICATION
+			15, // STREAM_BLUETOOTH_SCO
+
+系统默认音量
+index 9a591ca..d541dee 100755
+	--- a/media/java/android/media/AudioManager.java
+	+++ b/media/java/android/media/AudioManager.java
+	@@ -231,7 +231,7 @@ public class AudioManager {
+		         4,  // STREAM_VOICE_CALL
+				          7,  // STREAM_SYSTEM
+						           5,  // STREAM_RING
+								   -        11, // STREAM_MUSIC
+								   +        30, // STREAM_MUSIC
+								            6,  // STREAM_ALARM
+											         5,  // STREAM_NOTIFICATION
+													          7,  // STREAM_BLUETOOTH_SCO
 
 
+替换目录下所有文件中到某个字符串——sed结合grep
+
+	例：要将目录 dir 下面所有文件中的 old 都修改成new，这样做：
+
+	[cpp] view plaincopy
+
+	    sed -i "s/old/new/g" `grep 'old' -rl dir`
+
+改wifi 8189es驱动
+
+xxxx.mk  WIFI_MODULE = 8189es 
+
+init.amlogic.board.rc
+
+Kernel.mk   修改拷贝ko文件
+
+完整编译
+/hardware/libhardware_legacy$ 
+
+/external/wpa_supplicant_8$ 
+
+cibn
+
+b0:d5:9d:19:eb:a2
