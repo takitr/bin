@@ -128,24 +128,44 @@ alias o='nautilus'
 alias openpdf='evince'
 alias apk='aapt dump badging'
 alias f='git log --pretty=oneline'
-alias g18_th8='. ./build/envsetup.sh && lunch g18ref_th8-user && export T=$T'
-alias m201_th0='. ./build/envsetup.sh && lunch m201_th0-user && export T=$T'
-alias m201_512_th1='. ./build/envsetup.sh && lunch m201_512m_th01-user && export T=$T'
-alias m201_512_th8='. ./build/envsetup.sh && lunch m201_512m_th8-user && export T=$T'
+alias g18_th8='. ./build/envsetup.sh && lunch g18ref_th8-user'
+alias g18_ref='. ./build/envsetup.sh && lunch g18ref-user'
+alias m201='. ./build/envsetup.sh && lunch m201-user'
+alias m201_th0='. ./build/envsetup.sh && lunch m201_th0-user'
+alias m201_512_th1='. ./build/envsetup.sh && lunch m201_512m_th01-user && export BUILD_APK=B2B'
+alias m201_512_th100='. ./build/envsetup.sh && lunch m201_512m_th100-user && export BUILD_APK=ZHONG_HUA_YUN_HE_SHUIPING'
+alias m201_512_th8='. ./build/envsetup.sh && lunch m201_512m_th8-user'
+alias m201_telecom='. build/envsetup.sh && export PROJECT_TYPE=telecom PROJECT_ID=m201 && lunch m201-user'
+alias m201_unicom='. build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201;lunch m201-user'
+alias n200C='. build/envsetup.sh && lunch n200C-user'
+
 alias ssh_timehold='ssh zhaoxinhai@timehold.f3322.org -p 8989'
+alias ssh_timehold2='ssh zhaoxinhai@timehold.wicp.net -p 7878'
+alias sftp_timehold2='sftp -P 7878 sftp-cibn@timehold.wicp.net'
+alias ssh_aml='ssh hank.chen@10.28.8.15'
+alias ssh_aml2='ssh hank.chen@10.28.8.20'
+
 alias mk='device/amlogic/g18ref_th8/quick_build_kernel.sh'
 alias sum='du -cms ./* | sort -rn | head -n 5'
 alias signapk='java -jar /opt/signapk/signapk.jar /opt/signapk/platform.x509.pem /opt/signapk/platform.pk8'
-alias eclipse='sudo /home2/adt-bundle-linux-x86_64-20140702/eclipse/eclipse'
+alias eclipse='sudo /home2/adt-bundle-linux-x86_64-20140321/eclipse/eclipse'
 export PATH=$PATH:/home/xinhai/bin:~/bin/dex2jar-0.0.9.15
+export ANDROID_SDK_HOME=/home2/adt-bundle-linux-x86_64-20140321/sdk
+export PATH=$PATH:$ANDROID_SDK_HOME/tools
+export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools
+export PATH=$PATH:/home2/work/s805/ndk
 export patch=~/amlogic/patch
 export mx=~/amlogic/mx
 export release=~/amlogic/release
 export s805=/home2/work/s805
+export USE_CCACHE=1
+export CCACHE_DIR=~/.ccache
+ccache -M 20G
 
 export BOARD_VENDOR=TW
 #export BOARD_VENDOR=TW_SECURE
 #set wifi hardware for zhuoyi
-export WIFI_NBUILD=6210 
 #export BUILD_APK=B2C 
 export BUILD_APK=ZHONG_HUA_YUN_HE
+#export BUILD_APK=QUAN_ZHOU_DIAN_XIN
+#export TARGET_USE_SECURITY_MODE=ture

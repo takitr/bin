@@ -18,7 +18,7 @@ set go=             " 不要图形按钮
 
 set guifont=Courier_New:h10:cANSI   " 设置字体  
 
-"syntax on           " 语法高亮  
+syntax on           " 语法高亮  
 
 autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
 
@@ -354,7 +354,7 @@ set smarttab
 
 " 显示行号
 
-set number
+"set number
 
 " 历史记录数
 
@@ -534,7 +534,7 @@ let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
 
 let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
 
-autocmd FileType java set tags+=D:\tools\java\tags  
+"autocmd FileType java set tags+=D:\tools\java\tags  
 
 "autocmd FileType h,cpp,cc,c set tags+=D:\tools\cpp\tags  
 
@@ -554,9 +554,9 @@ set tags=tags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"默认打开Taglist 
+"默认打开Taglist          0 关闭 1 打开 
 
-let Tlist_Auto_Open=1 
+let Tlist_Auto_Open=0 
 
 """""""""""""""""""""""""""""" 
 
@@ -581,11 +581,15 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
+let g:SuperTabRetainCompletionType = 2
+let g:SuperTabDefaultCompletionType = "<C-X><C-U>"
 
 " save the cursor of the last open
 if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+
 
 "set tags=~/amlogic/mx/tags
 set tags=/home2/work/s805/tags
