@@ -915,9 +915,225 @@ final Intent intent = new Intent();
   startActivity(intent);
 
 
+
+
+
+package com.example.hellowrold;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class CMDExecute {
+
+    public synchronized String run(String[] cmd, String workdirectory)
+            throws IOException {
+        String result = "";
+        try {
+            ProcessBuilder builder = new ProcessBuilder(cmd);
+            InputStream in = null;
+            // 设置一个路径
+            if (workdirectory != null) {
+                builder.directory(new File(workdirectory));
+                builder.redirectErrorStream(true);
+                Process process = builder.start();
+                in = process.getInputStream();
+                byte[] re = new byte[1024];
+                while (in.read(re) != -1)
+                    result = result + new String(re);
+            }
+            if (in != null) {
+                in.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+}
+
+        String result = null;
+        CMDExecute cmdexe = new CMDExecute();
+        try {
+            String[] args = {"/system/bin/top", "-n", "1"};
+            result = cmdexe.run(args, "/system/bin/");
+        } catch (IOException ex) {
+            Log.i("fetch_process_info", "ex=" + ex.toString());
+        }
+        	
+		Log.i("aaaaaa",result);
+
+
+
 service.adb.tcp.port=31015
 
 
 075586315301@163.gd
 
 	IDYUIQBG
+
+专门用于终端对接测试使用​​的账号：
+
+
+cibn
+00036624430 32697054
+mac : b0:d5:9d:19:eb:a2
+
+
+
+
+tmc
+
+00039565861 12345678
+b0:d5:9d:19:eb:63
+
+B0D59D19EB63
+
+dumpsys package com.ott.plugin 用这个命令查看下
+
+dumpsys package com.ott.android.TMC
+
+com.ott.android.TMC
+
+http://61.160.137.244:8085/ACS/ACSService?method=invoke&STBID=B0D59D19EB63&OP=Reboot
+
+http://61.160.137.244:8085/ACS/ACSService?method=invoke&STBID=B0D59D19EB63&OP=RemovePackage&RemovePackage=hdpfans.com
+
+
+
+stbid
+
+ netcfg | grep eth0 | awk '{print $5}' | sed "s/://g" | tr '[a-z]' '[A-Z]'
+
+
+ 1, 用tr
+  
+     例如：UPPERCASE=$(echo $VARIABLE | tr '[a-z]' '[A-Z]')   (把VARIABLE的小写转换成大写)
+	             LOWERCASE=$(echo $VARIABLE | tr '[A-Z]' '[a-z]')   (把VARIABLE的大写转换成小写)
+				  
+				 2, 用typeset
+				  
+				     typeset -u VARIABLE  (把VARIABLE的小写转换成大写)
+	    typeset -l  VARIABLE  (把VARIABLE的大写转换成小写)
+	 
+	    例如：typeset -u VARIABLE
+		            VARIABLE="True"
+					            echo $VARIABLE
+								            输出为TRUE 
+
+
+
+
+00:25:92:ee:83:a7
+
+
+
+
+B0D59D19EB63
+
+cn.cibntv.apecn.live/com.tvie.ui.TVPlayerActivity
+
+getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)
+
+am startservice -n com.ott.android.uss/.USTService 
+
+    // NOTE: If you add a new keycode here you must also add it to:
+    //  isSystem()                                                                                                                             
+    //  frameworks/native/include/android/keycodes.h
+    //  frameworks/base/include/androidfw/KeycodeLabels.h
+    //  external/webkit/WebKit/android/plugins/ANPKeyCodes.h
+    //  frameworks/base/core/res/res/values/attrs.xml
+    //  emulator?
+    //  LAST_KEYCODE
+    //  KEYCODE_SYMBOLIC_NAMES
+    //
+    //  Also Android currently does not reserve code ranges for vendor-
+    //  specific key codes.  If you have new key codes to have, you
+    //  MUST contribute a patch to the open source project to define
+    //  those new codes.  This is intended to maintain a consistent
+    //  set of key code definitions across all Android devices.
+
+
+./make-standalone-toolchain.sh --ndk-dir=../../ --install-dir=../../../android-toolchain/android-19 --platform=android-19 --toolchain=arm-linux-androideabi-4.8
+
+keytool -genkey -keystore ~/.android/debug.keystore -v -alias androiddebugkey -dname "CN=Android Debug,O=Android,C=US" -keypass android -storepass android -keyalg RSA -keysize 2048 -validity 10000
+
+sudo ./configure --with-toolchain=/opt/android-toolchain/android-19 --prefix=/opt/xbmc-deps --host=arm-linux-androideabi --with-sdk-path=/opt/android-sdk-linux --with-ndk=/opt/android-ndk-r9d --with-sdk=android-19 --with-tarballs=/tmp/xbmc-android
+
+
+
+
+AP6181 WIFI ONLY
+AP6210 WIFI+BT
+AP6330 WIFI+BT+FM
+AP6335 WIFI+BT+FM (SDIO 3.0)
+
+
+WL211(40181)
+WL212(40183)
+AP6181(40181)
+AP6210(40181+20710) (wifi+BT)
+AP6330(4330 dual band)
+AP6476(40181+2076) (wifi+BT+FM+GPS)
+AP6493(40183+20793) (wifi+BT+FM+NFC)
+
+vi src/com/android/settings/TetherSettings.java +116
+
+
+用TSD或者FSD，需要修改配置，如下：uboot：uboot\board\amlogic\configs\m8b_m200_v1.h#define PORT_C_CARD_TYPE 
+CARD_TYPE_SD // CARD_TYPE_MMC/CARD_TYPE_SDkernel：DTD文件中card type选择为2。 
+card_type = <2>; /* 0:unknown, 1:mmc card(include eMMC), 2:sd card(include tSD), 
+3:sdio device(ie:sdio-wifi), 4:SD combo (IO+mem) card, 5:NON sdio device(means sd/mmc card), other:reserved */
+
+ip add xxx.xxx.xxx.xxx/24 
+
+iptv setting passwod  6321
+suma 00:24:68:c4:e7:22
+
+00:24:68:c0:db:b5
+
+
+echo 0123456789ABCDEFGH > TH7788TH
+
+
+am start -a android.intent.action.VIEW -d  http://m.youtube.com/watch?v=Lu5aBj7jtMA 
+
+am start -a com.starcor.hunan.live
+
+kunm501#
+
+amlogic 公网ip 211.162.65.113
+配静态IP
+10.28.6.20
+255.255.255.0
+
+10.28.6.1
+
+DNS
+
+10.28.11.63
+10.28.11.2
+
+
+
+130|root@m201_512m:/ # cat /private_data/ini/DeviceID.ini                      
+[DEVICE]
+
+
+http://183.224.43.168:5000/nn_live.ts?id=CCTV1
+
+http://183.224.43.168:5000/nn_live.ts?id=HNWS
+
+am start -a com.yunos.tv.factorytest1
+
+git clone git://scgit.amlogic.com/kernel/common.git -b amlogic-3.14-dev
+
+输入：13488651504   密码：123456
+13488651504   123456
+
+需要EPG修改：
+final Intent intent = new Intent();
+  intent.setClassName("com.mbox.settings", "com.mbox.settings.MboxSettingActivity");
+  intent.putExtra(":android:show_fragment", "com.mbox.settings.fragment.EthSettingsFragment");
+  startActivity(intent);
+
