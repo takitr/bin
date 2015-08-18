@@ -105,36 +105,9 @@ repo init -u ssh://git@192.168.2.3/amlogic/m8box-kitkat/kitkat/platform/manifest
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 
-电信/OTT代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
- repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20150414.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-移动/OTT代码  m201
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-cbc-20150122.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
-mx浙江移动   g18
-repo init -u ssh://git@27.154.234.214/repository/amlogic/mxbox-jb-iptv/platform/manifest.git -b jb-mr1-amlogic-chinamobile-20140516-sync -m jb-mr1-amlogic-chinamobile-20141110.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
 s812 n200 
 
 s802 k200
-
-
-厦门代码下载
-移动代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-repo init -u ssh://git@timehold.f3322.org/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync --repo-url=ssh://git@timehold.f3322.org/repository/android/git-repo.git
-
-
-电信/OTT代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 ---------------------------------------------------------------------------------------------------------
 2. 代码编译方法：
@@ -189,8 +162,20 @@ repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifes
 repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
 
 
+s812/s802 编译方法
 
-unicom
+telecom  
+unicom 
+nand   PROJECT_ID=k200a                 
+emmc   PROJECT_ID=k200b
+
+. build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=k200a;lunch k200-user;make otapackage -j4
+
+
+
+
+
+中国联通
 
 repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-beijing_cu_20150724.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
 
@@ -814,6 +799,25 @@ am broadcast -a airplay.amlogic.stopService
 Hank 2015-3-27 14:52:19
 am broadcast -a airplay.amlogic.startService
 
+
+
+adb shell am broadcast 后面的参数有：
+
+[-a <ACTION>]
+[-d <DATA_URI>]
+[-t <MIME_TYPE>] 
+[-c <CATEGORY> [-c <CATEGORY>] ...] 
+[-e|--es <EXTRA_KEY> <EXTRA_STRING_VALUE> ...] 
+[--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE> ...] 
+[-e|--ei <EXTRA_KEY> <EXTRA_INT_VALUE> ...] 
+[-n <COMPONENT>]
+[-f <FLAGS>] [<URI>]
+
+
+adb shell am broadcast -a com.android.test --es test_string "this is test string" --ei test_int 100 --ez test_boolean true
+
+
+
 ================================================
 pppoe
 
@@ -997,7 +1001,8 @@ https://github.com/Trinea/android-common
 
 https://github.com/Trinea/android-common.git
 
-
+引入工程jar
+out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar
 
 uid :
 init.rc
@@ -1010,3 +1015,18 @@ services/java/com/android/server/pm/PackageManagerService.java:980:
 
 
 frameworks/base/core/java/android/os/Process.java
+
+
+sudo sysv-rc-conf 
+
+HLS
+
+git://git.videolan.org/x264.git
+
+git clone https://github.com/johnf/m3u8-segmenter
+segmenter -i test.ts -n 30 -p sample_test -m stream-test.m3u8 -u http://192.168.1.10:8080/hls/
+
+
+GPIOAO_4
+
+echo write 0x9fef1fab a 0x0024 > sys/class/amlogic/debug
