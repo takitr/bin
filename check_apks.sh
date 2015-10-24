@@ -2,6 +2,8 @@
 
 dstdir=$1
 
+#preloadapk=*.apk
+bootvideo='*.mp4'
 if [ ! -d $dstdir ];then
     echo Usage: $0 dst_dir
     exit
@@ -18,10 +20,10 @@ fi
 echo bcompare apk start ...
 echo
 same_apk_num=0 
-for i in `find . -name *.apk`
+for i in `find . -name '*.apk'`
 do 
     md5=`md5sum $i | awk '{print $1}'`
-    for j in `find -P $dstdir -name *.apk`
+    for j in `find -P $dstdir -name '*.apk'`
     do
        dstapkmd5=`md5sum $j | awk '{print $1}'`
        if [ $md5 == $dstapkmd5 ];then
@@ -43,10 +45,10 @@ echo bcompare bootvideo start ...
 echo 
 
 same_bootvideo_num=0
-for i in `find . -name *.mp4`
+for i in `find . -name $bootvideo`
 do 
     md5=`md5sum $i | awk '{print $1}'`
-    for j in `find -P $dstdir -name *.mp4`
+    for j in `find -P $dstdir -name $bootvideo`
     do
        dstapkmd5=`md5sum $j | awk '{print $1}'`
        if [ $md5 == $dstapkmd5 ];then

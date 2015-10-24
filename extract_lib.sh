@@ -15,7 +15,7 @@ if [ ! -d $1 ];then
 fi
 
 
-for i in `find . -name *.apk`
+for i in `find . -name '*.apk'`
 do
    unzip -l $i | grep $LIBDIR #1>/dev/null
    if [ $? == 0 ];then
