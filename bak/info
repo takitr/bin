@@ -10,6 +10,10 @@ adb root 动态白名单
 
 9.24
 
+
+http://blog.csdn.net/dickjtk/article/details/44749313
+预置so
+
 bypass_interlace_output
 
 arch/arm/cpu/aml_meson/uclboot
@@ -1093,6 +1097,62 @@ suma 00:24:68:c4:e7:22
 00:24:68:c0:db:b5
 
 
+
+
+
+
+1、待机启动问题，我在SDK/uboot/board/amlogic/m8b_m201_v1/路径下，没有找到对应响应待机启动的地方，是在哪里修改呢
+
+arch/arm/cpu/aml_meson/m8b/firmware/arc_power/irremote2arc.c
+
+ 
+
+2、电源指示灯问题，能否告知在哪个文件里修改其状态吗？
+
+参考原理图，配置修改meson8b_m201_1G.dtd中meson-netled字段，类似下面，
+
+ 
+
+ /// ***************************************************************************************
+
+///     -       LedLight
+
+//$$ MODULE="ledlight"
+
+//$$ DEVICE="meson-ledlight"
+
+//$$ L2 PROP_STR = "status"
+
++    meson-netled{
+
+	+              compatible = "amlogic,meson-ledlight";
+
+	+              dev_name = "meson-ledlight";
+
+	+              status = "okay";
+
+	+              power_pins = "TEST_N";
+
+	+              power_led_types = "R&G"; //R, G, R&G
+
+	+              power_pins_on = "1";
+
+	+              net_pins = "GPIOAO_2";
+
+	+              net_led_types = "R&G";
+
+	+              net_pins_on = "1";
+
+	+       };
+
++
+
+
+
+
+
+
+
 echo 0123456789ABCDEFGH > TH7788TH
 
 
@@ -1137,3 +1197,69 @@ final Intent intent = new Intent();
   intent.putExtra(":android:show_fragment", "com.mbox.settings.fragment.EthSettingsFragment");
   startActivity(intent);
 
+com.kehwin.action.PARING_REMOTECONTROL
+
+  logcat -s amffmpeg amplayer amadec
+
+ffmpeg static
+
+  http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-64bit-static.tar.xz
+
+am start -n com.fb.FileBrower/.FileBrower
+am start -n com.meson.videoplayer/.VideoPlayer
+
+am start -n com.android.gallery3d/.app.GalleryActivity
+
+am broadcast -a android.intent.action.MASTER_CLEAR
+
+android.intent.action.MUSIC_PLAYER
+com.android.music/.MusicBrowserActivity
+
+vi src/com/android/settings/bluetooth/BluetoothDevicePreference.java +246
+
+store init 3
+
+cibn-customer: 
+      地址  :  timehold.wicp.net
+	        端口  :  7878
+			      协议  :  SFTP
+				账号  :  sftp-cibn-customer
+					密码  :  cibncustomer123
+
+
+
+云南移动deviceID
+MAC地址： 30303a31353a31303a30313a32303a3939
+stbid： 00120101010100001406001510012099
+
+1.cd /sys/class/aml_keys/aml_keys/touch /private_data/ini/DeviceID.ini  
+刚烧进去应该没有ini目录
+
+2.echo mac > key_name
+3.echo "30303a31353a31303a30313a32303a3939" > key_write
+4.echo usid > key_name
+5.echo "00120101010100001406001510012099" > key_write
+
+echo "[DEVICE]\nDeviceId=0000CC6550487F1" > /private_data/ini/DeviceID.ini  
+mkdir /private_data/ini
+
+需要先建立ini目录，然后建立DeviceID.ini文件
+
+再修改ini目录的权限 
+chmod -R 777 ini
+这样之后就可以按红色键进入直播了
+
+121269475082
+
+javaf反射
+http://blog.csdn.net/ichsonx/article/details/9108173
+autopaired
+http://www.android100.org/html/201406/08/21390.html
+
+
+http://114.247.94.46/Apptest/yy/update_signed.zip
+frameworks/base/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java +4158
+
+jinbo  dvb88888
+
+ASA113-15

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Sample Scripts</title>
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="scripts,scripts samples" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="Content-Style-Type" content="text/css" />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?sample_scripts.html"; }
+  else { parent.quicksync('a2.21.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body style="margin: 0px 0px 0px 0px; background: #FFFFFF;" onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="5" 
+       style="margin: 0px; background: #B01213 url(red-bg.jpg) -12px 0px repeat-y;">
+<!-- <table width="100%" border="0" cellspacing="0" cellpadding="5" bgcolor="#B01213"> -->
+  <tr valign="middle">
+<!--    <td style="width: 10px">&nbsp;</td> -->
+    <td align="left">
+      <p class="p_Heading1"><span class="f_Heading1">Sample Scripts</span></p>
+
+    </td>
+    <td align="right">
+     <span style="font-size: 9pt">
+     <a href="scripts_overview.html"
+        onmouseover="document.images.prev.src='prev-hot.png'" 
+        onmouseout="document.images.prev.src='prev.png'"
+        ><img name=prev src="prev.png" border=0 alt="Previous"
+        ></a><a href="scripts_overview.html"
+        onmouseover="document.images.top.src='top-hot.png'" 
+        onmouseout="document.images.top.src='top.png'"><img name=top src="top.png" border=0 alt="Up"
+        ></a><a href="automating_a_script.html"
+        onmouseover="document.images.next.src='next-hot.png'" 
+        onmouseout="document.images.next.src='next.png'"><img name=next src="next.png" border=0 alt="Next"
+        ></a>
+     </span>
+    </td>
+  </tr>
+</table>
+
+
+<!-- Placeholder for topic body. -->
+<table width="100%" border="0" cellspacing="0" cellpadding="5"><tr valign="top"><td align="left">
+<p>The following are some sample scripts to show how Beyond Compare can use scripts.  You can either use these scripts as is or model your own scripts after them.</p>
+<p>Here is a basic script which copies all of the newer and orphaned files from one folder to another, using a previously created session:</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed"> &nbsp;load&nbsp;"Sync&nbsp;Laptop"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;sync&nbsp;update:left-&gt;right</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Synching two folders</span></p>
+<p>Here is a more advanced script which syncs two specific folders using advanced filters.  This works the same as loading the folders in a Folder Compare session and performing a "Mirror Left to Right" folder synchronization.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#&nbsp;Turn&nbsp;logging&nbsp;on</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">log&nbsp;normal&nbsp;"C:\My&nbsp;Documents\Webpage\Synclog.txt"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#&nbsp;Load&nbsp;the&nbsp;default&nbsp;session&nbsp;and&nbsp;exclude&nbsp;all&nbsp;but&nbsp;certain&nbsp;file&nbsp;types</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;&lt;default&gt;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">filter&nbsp;"*.html;*.htm;*.png;*.jpg"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#&nbsp;Load&nbsp;the&nbsp;base&nbsp;folders</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;"C:\My&nbsp;Documents\Webpage"&nbsp;"ftp://user@ftp.some-isp.com/webroot"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#&nbsp;Copy&nbsp;different&nbsp;files&nbsp;left&nbsp;to&nbsp;right,&nbsp;delete&nbsp;orphans&nbsp;on&nbsp;right</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">sync&nbsp;mirror:left-&gt;right</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Comparing two files by name</span></p>
+<p>This script compares two files by name.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">file-report&nbsp;layout:side-by-side&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;options:display-mismatches&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;output-to:%3&nbsp;%1&nbsp;%2</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p>A sample command line, calling the above script:</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">bcompare.exe&nbsp;@GenerateReport.txt&nbsp;Mine\Sample.txt&nbsp;Theirs\Sample.txt&nbsp;Report.txt</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p><img src="note.png" width="12" height="12" border="0" alt=""><span class="f_Subtitle">Note  </span>An ampersand (&amp;) at the end of a line means that the command continues on the next line.</p>
+<p><img src="note.png" width="12" height="12" border="0" alt=""><span class="f_Subtitle">Note  </span>%1, %2, and %3 refer to the 1st, 2nd and 3rd command line argument, respectively.</p>
+<p class="p_Subtitle"><span class="f_Subtitle">Generating a report</span></p>
+<p>This script compares two files by name and generates an html report showing differences with context:</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">text-report&nbsp;layout:side-by-side&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;options:ignore-unimportant,display-context&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;output-to:%3&nbsp;output-options:html-color&nbsp;%1&nbsp;%2</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Keeping a web site in sync</span></p>
+<p>This script keeps a web site in sync with development files.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#log&nbsp;the&nbsp;script</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">log&nbsp;verbose&nbsp;append:"c:\website&nbsp;updates.txt"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#set&nbsp;the&nbsp;comparison&nbsp;criteria</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">criteria&nbsp;timestamp&nbsp;size</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#load&nbsp;source&nbsp;and&nbsp;target</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;c:\website&nbsp;ftp://web@vmscooter-linux/html/testing</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#filter&nbsp;to&nbsp;only&nbsp;include&nbsp;source&nbsp;files,&nbsp;ignore&nbsp;CVS&nbsp;subfolders</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">filter&nbsp;"*.htm;*.html;*.php;*.jpg;*.gif;-CVS\"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#Sync&nbsp;the&nbsp;local&nbsp;files&nbsp;to&nbsp;the&nbsp;web&nbsp;site,&nbsp;creating&nbsp;empty&nbsp;folders</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">sync&nbsp;create-empty&nbsp;mirror:left-&gt;right</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Performing a rules-based comparison and logging results to a file</span></p>
+<p>This script logs the script results to a file that uses the current date as part of the name.  The variable %date% is expanded by the script in the format 2004-10-13 on U.S. English systems, on other systems it will match the system locale.  It performs a rules-based comparison of Pascal source files and generates a report of mismatches.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#log&nbsp;to&nbsp;a&nbsp;file&nbsp;of&nbsp;the&nbsp;form&nbsp;log2004-10-13.txt</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#the&nbsp;exact&nbsp;format&nbsp;depends&nbsp;on&nbsp;your&nbsp;regional&nbsp;and&nbsp;language&nbsp;settings</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">log&nbsp;verbose&nbsp;append:projectlog%date%.txt</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#compare&nbsp;the&nbsp;text&nbsp;contents&nbsp;of&nbsp;the&nbsp;files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">criteria&nbsp;rules-based</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#only&nbsp;compare&nbsp;delphi&nbsp;source&nbsp;files,&nbsp;ignore&nbsp;the&nbsp;archive&nbsp;folder</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">filter&nbsp;"*.pas;*.dfm;*.dpr;*.inc;-archive\"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;s:\project\chris&nbsp;s:\project\tim</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">folder-report&nbsp;layout:summary&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">&nbsp;&nbsp;options:display-mismatches,column-attributes,column-timestamp,column-size&nbsp;&amp;</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed"> &nbsp;output-to:projectreport.txt</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Comparing current folder state to a snapshot</span></p>
+<p>This script compares the current state of a folder to a snapshot from the last time updates were sent out.  Then it copies the changed and new files to a zip file and updates the snapshot of the folder.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">option&nbsp;confirm:yes-to-all</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#compare&nbsp;using&nbsp;crc</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">criteria&nbsp;crc</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#load&nbsp;current&nbsp;files&nbsp;against&nbsp;snapshot&nbsp;from&nbsp;the&nbsp;last&nbsp;patch</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;"c:\folder"&nbsp;"c:\folder.bcss"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#expand&nbsp;to&nbsp;affect&nbsp;subfolders&nbsp;and&nbsp;files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">expand&nbsp;all</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#select&nbsp;updated&nbsp;files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">select&nbsp;left.diff.files&nbsp;left.orphan.files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#copy&nbsp;changes&nbsp;to&nbsp;a&nbsp;zip&nbsp;file</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">copyto&nbsp;left&nbsp;path:relative&nbsp;"c:\folderchanges.zip"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#update&nbsp;the&nbsp;snapshot</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">snapshot&nbsp;save-crc&nbsp;left&nbsp;output:"c:\folder.bcss"</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+<p class="p_Subtitle"><span class="f_Subtitle">Generating a report of differences</span></p>
+<p>This script generates a report of only differences.</p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#set&nbsp;up&nbsp;basic&nbsp;comparison&nbsp;features</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">criteria&nbsp;timestamp:2sec</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#filter&nbsp;out&nbsp;log&nbsp;files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">filter&nbsp;"-\dir1\dir2\*.log"</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#load&nbsp;first&nbsp;comparison</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">load&nbsp;\\srv1\share&nbsp;\\srv2\share</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#compare&nbsp;files&nbsp;with&nbsp;timestamp&nbsp;differences</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">select&nbsp;newer.files&nbsp;older.files</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">#generate&nbsp;a&nbsp;report&nbsp;of&nbsp;the&nbsp;differences</span></p>
+<p class="p_IndentedCode"><span class="f_CourierFixed">folder-report&nbsp;layout:summary&nbsp;options:display-mismatches&nbsp;output-to:C:\report.txt</span></p>
+<p class="p_IndentedCode"><span class="f_IndentedCode">&nbsp;</span></p>
+
+</td></tr></table>
+
+</body>
+</html>

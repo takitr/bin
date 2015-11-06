@@ -88,7 +88,9 @@ root@android:/sys/class/aml_keys/aml_keys # cat /sys/class/                    a
 
 0428 mx
 
-repo init -u ssh://git@27.154.234.214/repository/amlogic/mx-jellybean-mr1-box-ol/jellybean/platform/manifest.git -b jb-mr1-timehold-new-0428 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/mx-jellybean-mr1-box-ol/jellybean/platform/manifest.git -b jb-mr1-timehold-new-0428 --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
 
 
 pbs 1225 mx  g18_th8
@@ -103,33 +105,9 @@ repo init -u ssh://git@192.168.2.3/amlogic/m8box-kitkat/kitkat/platform/manifest
 repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kitkat/kitkat/platform/manifest.git -b kk-timehold-0823 --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 
-电信/OTT代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20141030.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
- repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-ctc-20150414.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-移动/OTT代码  m201
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-base20140815-cbc-20150122.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
-mx浙江移动   g18
-repo init -u ssh://git@27.154.234.214/repository/amlogic/mxbox-jb-iptv/platform/manifest.git -b jb-mr1-amlogic-chinamobile-20140516-sync -m jb-mr1-amlogic-chinamobile-20141110.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-
 s812 n200 
 
 s802 k200
-
-
-1. 代码下载
-移动代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
-
-电信/OTT代码
-repo init -u ssh://git@27.154.234.214/repository/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@27.154.234.214/repository/android/git-repo.git
 
 ---------------------------------------------------------------------------------------------------------
 2. 代码编译方法：
@@ -176,10 +154,31 @@ k21项目+电信IPTV:
 
 
 
+移动基地:
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-base20140815-chinamobile-sync --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+地方招标:
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-ott-ctc.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+
+s812/s802 编译方法
+
+telecom  
+unicom 
+nand   PROJECT_ID=k200a                 
+emmc   PROJECT_ID=k200b
+
+. build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=k200a;lunch k200-user;make otapackage -j4
 
 
 
-repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-beijing_cu_20150625.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+
+中国联通
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-iptv-sync -m kk-amlogic-iptv-beijing_cu_20150724.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
 
 M201公版(M8 baby)+联通IPTV:
 . build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201;lunch m201-user;make otapackage -j24
@@ -187,6 +186,9 @@ M201C公版(M8 baby)+联通IPTV:
 . build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201C;lunch m201-user;make otapackage -j24
 N200公版(S812)+联通IPTV:
 . build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=k200b;lunch k200-user;make otapackage -j24
+
+
+. build/envsetup.sh;export PROJECT_TYPE=telecom PROJECT_ID=n200c;lunch k200-user;make otapackage -j24
 
 Amlogic 0313
 ----------------
@@ -197,6 +199,11 @@ repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat/kitkat/platform/m
 自己开发
 
 repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platform/manifest.git -b kk-amlogic-sync  -m openlinux_kk-amlogic_20140823_patch_150313.xml  --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+s812 sounbar ott
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platform/manifest.git -b kk-amlogic-sync  -m s812-soundbar-150313.xml  --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
 
 cibn
 
@@ -209,8 +216,13 @@ repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kitkat-cibn/kitkat/platf
 国广SETTING apk
 git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/Settings_cibn    
 
+国广输入法
+git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/RemoteIME  
+
 产测apk
 git clone ssh://git@timehold.f3322.org/timehold/TH-factoryTest.git -b kk-timehold-0823-cibn 
+
+git clone ssh://git@timehold.f3322.org/timehold/TH-factoryTest.git -b kk-timehold-0823-dare
 
 git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/cibn_vendor
 git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/logo_api_demo
@@ -219,6 +231,23 @@ git clone ssh://git@timehold.f3322.org/timehold/m8-cibn/libupdatelogo
 
 
 
+dvb:
+
+git clone ssh://git@timehold.wicp.net/timehold/app_th_dtv
+
+这里面有三个ＡＰＫ
+
+ＤＴＶ,　ＳＥＴＴＩＮＧ,　ＬＡＵＮＣＨＥＲ
+
+
+s905:
+
+repo init -u ssh://git@timehold.f3322.org/amlogic/l-amlogic-gx/l-amlogic-gx/platform/manifest.git -b  l-amlogic-gx-sync -m openlinux_l-amlogic_20150630.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+
+
+
+s905 4.4 IPTV代码发布
+repo init -u ssh://git@timehold.f3322.org/amlogic/m8box-kk-iptv/platform/manifest.git -b kk-amlogic-gxb-sync -m kk-amlogic-gxb-20150820.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
 
 
 
@@ -281,6 +310,18 @@ git commit -m "first commit"
 git remote add origin git@github.com:nicky1990/aml_res.git
 git push -u origin master""
 
+删除远程分支
+git push origin :test
+
+重命令远程分支
+
+1  删除远程分支  git push --delete origin devel
+2  删除本地分支 git branch -m devel develop
+3  推送本地分支 git push origin develop
+
+.repo/manifests
+git checkout -t m/kk-amlogic-sync
+
 
 git log --stat -2
 git commit --amend -m "aaaaaaaaaaa"
@@ -296,6 +337,7 @@ git diff tmp
 git merge tmp
 git branch -d tmp
 
+git blame services/java/com/android/server/WiredAccessoryManager.java | grep "xxxxx"
 
 set bootcmd run compatible_boot
 
@@ -397,12 +439,514 @@ dd if=/dev/zero of=/dev/block/bootloader
 
 awk {print } < adbkey.pub | openssl base64 -A -d -a | openssl md5 -c | awk {print } | tr [:lower:] [:upper:]
 
+10.3 查看CPU的频率
+su
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+10.4  CPU频率控制（定频）
+串口输入一下命令将CPU频率定频 1752M
+su
+echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo 1752000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 
+
+
+1.2 有声音和无视频
+1.2.1 无视频或者视频不支持
+这种情况可以用 PC 软件 mediainfo 看一下片源里面的流的信息。
+确认文件里面是否有视频流。
+确定视频流的格式,
+从而来确认我们播放器是否支持。
+1.2.2 deinterlace 和 ppmgr 阻塞
+#echo 1 > /sys/module/di/parameters/bypass_all
+#echo 1 > /sys/class/ppmgr/bypass
+看看视频能不能出现,如果出现能确认是这两个模块的问题。
+如果还是不出现,先退出播放,然后输入如下命令:
+#echo rm default > /sys/class/vfm/map
+#echo add default decoder amvideo > /sys/class/vfm/map
+如果能正常播放,就属于这种情况。
+1.2.3 视频数据不够
+# cat /sys/class/amstream/bufs
+Video buffer: flag:7( Alloc Used Parser nofirststamp )
+buf addr:0000000020c00000
+buf size:0x2800000
+buf canusesize:0x2800000
+buf regbase:0xc40
+buf level:0x6a
+buf space:0x27fe796
+buf read pointer:0x215a4800
+buf first_stamp:0xffffffff
+buf wcnt:0x153a5
+buf max_buffer_delay_ms:0ms
+buf current delay:160ms
+buf bitrate latest:85140bps,avg:1545405bps
+buf time after last pts:15070 ms
+buf time after last write data :15070 ms
+如果 buf level 为 0x0,就代表没有视频数据,可能是 parser 或者是 demux 的问题。如果是播放的 ts 文件,可以切
+换一下硬件 demux 和软件 demux,来确定问题。setprop libplayer.ts.softdemux 1 将 demux 设置成软件 demux。
+1.2.4 osd 遮挡视频
+echo 1 > /sys/class/graphics/fb0/blank
+echo 1 > /sys/class/graphics/fb1/blank
+如果输入这两个命令之后,视频显示出来了,就说明视频被 OSD 遮住了。
+可以再播放时输入如下命令:
+#dumpsys SurfaceFlinger
+type
+| handle | hint | flag | tr | blnd |
+format
+|
+source crop (l,t,r,b)
+|
+frame
+| name
+-----------+----------+------+------+----+------+-------------+--------------------------------+------------------------+------
+HWC | f653cd80 | 0002 | 0000 | 00 | 0100 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 1080.0 |
+0,
+0,
+1920, 1080 | SurfaceView
+GLES | f5c3c1f0 | 0000 | 0000 | 00 | 0105 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 985.0 |
+0,
+0, 1920,
+985 | com.droidlogic.videoplayer/com.droidlogic.videoplayer.VideoPlayer
+FB TARGET | f65219c0 | 0000 | 0000 | 00 | 0105 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 1080.0 |
+0,
+0,
+1920, 1080 | HWC_FRAMEBUFFER_TARGET
+查看有没有 SurfaceView,并且看一下 hint 是不是为 0002。如果没有或者 hint 不是 0002,说明 APK 没有创建
+videoview。
+1.2.5 videolayer 关闭
+#cat /sys/class/video/disable_video
+a、video layer 被关闭:
+返回“1”,需要在代码中查找设置/sys/class/video/disable_video 为 1 的地方。
+b、没有视频帧需要输出:
+返回“2”
+有可能和同步相关:
+#echo 0 > /sys/class/tsync/enable
+如果可以正常播放,就属于这种情况。
+有可能和 deinterlace 或者 ppmgr 相关,可以参见 1.2.2 来确认这种情况。
+1.2.6 解码错误
+这个一般都会有 decoder error 的打印,查看 kernel 打印就可以。
+cat /sys/class/amstream/bufs
+Video buffer:
+flag:7( Alloc Used Parser nofirststamp )
+buf addr:0000000020c00000
+buf size:0x2800000
+buf canusesize:0x2800000
+buf regbase:0xc40
+buf level:0x17fe796
+buf space:0x27fe796
+buf read pointer:0x215a4800
+buf first_stamp:0xffffffff
+buf wcnt:0x153a5
+buf max_buffer_delay_ms:0ms
+buf current delay:160ms
+buf bitrate latest:85140bps,avg:1545405bps
+buf time after last pts:15070 ms
+看 video buffer 如果 buf level 很高,而且不变化,排除 di、ppmrg 的问题之后就应该是解码的问题。
+需要抓取 cat /sys/class/vdec/amrisc_regs 信息。来确定 decoder 出现了什么问题。
+1.2.7 视频 OSD 上显示还是在 video layer 显示
+走 MediaCodec 和 OMX 的时候,还有可能显示在 OSD layer 上。
+在播放过程中,输入如下串口命令:
+#cat /sys/class/vfm/map
+default_osd { osd(0) amvideo4osd}
+default { decoder(1) ionvideo}
+可以确认属于这种情况。
+1.3 视频位置问题:
+#cat /sys/class/video/axis (x0,y0,x1,y1)
+#cat /sys/class/video/screen_mode(0:按片源比例显示;1:全屏;2:4 比 3;3:16 比 9)
+1.3.1 Video View 的位置
+#dumpsys SurfaceFlinger
+type
+| handle | hint | flag | tr | blnd |
+format
+|
+source crop (l,t,r,b)
+|
+| name
+-----------+----------+------+------+----+------+-------------+--------------------------------+------------------------+------
+HWC | f653cd80 | 0002 | 0000 | 00 | 0100 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 1080.0 |
+frame
+0,
+0,
+1920, 1080 | SurfaceView
+GLES | f5c3c1f0 | 0000 | 0000 | 00 | 0105 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 985.0 |
+0,
+985 | com.droidlogic.videoplayer/com.droidlogic.videoplayer.VideoPlayer
+FB TARGET | f65219c0 | 0000 | 0000 | 00 | 0105 | RGBA_8888
+|
+0.0,
+0.0, 1920.0, 1080.0 |
+1920, 1080 | HWC_FRAMEBUFFER_TARGET
+标红的为 video view 的位置
+0, 1920,
+0,
+0,
+1.3.2 窗口位置换算
+如果 video view 的位置正确,而/sys/class/video/axis 的值不对,可能是换算出现问题。
+logcat -s amavutils
+E/amavutils( 2785): unable to open file /sys/class/graphics/fb2/clone,err: No such file or directory
+I/amavutils( 2785): amvideo_utils_set_virtual_position :: x=0 y=0 w=1921 h=1081
+I/amavutils( 2785): device resolution 1280x720
+I/amavutils( 2785): disp resolution 1920x3240
+I/amavutils( 2785): amvideo_utils_set_virtual_position:: disp_w=1920, disp_h=1080
+I/amavutils( 2785): video global_offset 0
+I/amavutils( 2785): set ppmgr angle :0
+I/amavutils( 2785): /sys/class/graphics/fb0/free_scale_axis axis: 0 0 1919 1079
+I/amavutils( 2785): after scaled, screen position3: 0 0 1280 720
+I/amavutils( 2785): amvideo_utils_set_virtual_position (corrected):: x=0 y=0 w=1280 h=720
+I/amavutils( 2785): /sys/class/graphics/fb0/free_scale_axis axis: 0 0 1919 1079
+D/amavutils( 2785): amvideo_setscreenmode as 1.778499
+蓝色字体为 video view 的位置,红色字体为换算之后的 video axis 的位置。
+1.4 音视频卡顿
+1.4.1 音视频同时卡顿
+如果音视频同时卡顿,可能与如下原因:
+a、 buffer 下溢
+这五项分别代表 video、audio、subtitle、user data、h265video buffer 的情况,如果 buf level 比较低,表示 buffer 下
+溢。有可能是 player 送数据不够;如果是 ts 文件,有可能是 demux 有问题,可以切换一下软件 demux 或者硬件
+demux。切换方式为:setprop libplayer.ts.softdemux 1 为软件 demux,setprop libplayer.ts.softdemux 0 为硬件 demux。
+cat /sys/class/amstream/bufs
+Video buffer:
+flag:7( Alloc Used Parser nofirststamp )
+buf addr:0000000020c00000
+buf size:0x2800000
+buf canusesize:0x2800000
+buf regbase:0xc40
+buf level:0x65556a
+buf space:0x21a9296
+buf read pointer:0x20f4f300
+buf first_stamp:0xffffffff
+buf wcnt:0x1a227
+buf max_buffer_delay_ms:0ms
+buf current delay:10520ms
+buf bitrate latest:85140bps,avg:1545405bps
+buf time after last pts:4060 ms
+buf time after last write data :4060 ms
+Audio buffer:
+flag:7( Alloc Used Parser nofirststamp )
+buf addr:0000000027400000
+buf size:0x180000
+buf canusesize:0x180000
+buf regbase:0x1584
+buf level:0x275aa
+buf space:0x157256
+buf read pointer:0x27413e80
+buf first_stamp:0xffffffff
+buf wcnt:0x700
+buf max_buffer_delay_ms:0ms
+buf current delay:10496ms
+buf bitrate latest:43680bps,avg:76144bps
+buf time after last pts:4060 ms
+buf time after last write data :4060 ms
+Subtitle buffer:
+flag:0( Unalloc Noused noParser nofirststamp )
+buf addr:
+(null)
+buf size:0x40000
+buf canusesize:0x40000
+buf start:0x0
+buf write pointer:0x0
+buf read pointer:0x0
+buf level:0x0
+buf first_stamp:0xffffffff
+buf wcnt:0x0
+buf max_buffer_delay_ms:0ms
+UserData buffer:
+flag:0( Unalloc Noused noParser nofirststamp )
+buf addr:
+(null)
+buf size:0x0
+buf canusesize:0x0
+buf regbase:0x0
+buf no used.
+buf write pointer:0x0
+buf read pointer:0x0
+buf first_stamp:0xffffffff
+buf wcnt:0x0
+buf max_buffer_delay_ms:0ms
+HEVC buffer:
+flag:0( Unalloc Noused noParser nofirststamp )
+buf addr:
+(null)
+buf size:0x2800000
+buf canusesize:0x2800000
+buf regbase:0x3102
+buf no used.
+buf first_stamp:0xffffffff
+buf wcnt:0x0
+buf max_buffer_delay_ms:0ms
+b、同步相关卡顿
+查看同步模式,关闭同步,或者关闭声音
+cat /sys/class/tsync/mode;
+echo 0 > /sys/class/tsync/enable
+setprop media.amplayer.noaudio true
+查看同步模式
+关闭同步
+disable audio
+查看 checkin checkou pts
+echo 1 > /sys/class/tsync/debug_audio_pts
+查看 audio pts
+echo 1 > /sys/class/tsync/debug_pts_checkin
+查看 checkin 的 pts
+echo 1 > /sys/class/tsync/debug_pts_checkout 查看 checkout 的 pts
+echo 1 > /sys/class/tsync/debug_video_pts
+查看 video pts
+1.4.2 只有视频卡
+a、视频解码出错
+这种情况只需要查看 kernel 打印即可,如果解码出错会有错误打印。
+b、后处理相关卡顿
+如果上述情况排除之后,还有可能是后处理模块或者是带宽造成的。
+关闭 DI:
+echo 1 > /sys/module/di/parameters/bypass_all
+或者
+echo rm default > /sys/class/vfm/map
+echo add default decoder ppmgr amvideo > /sys/class/vfm/map
+DI 关闭后如果不卡顿,也有可能不是模块本身的问题,有可能是带宽问题。此时需要按照 1.4.5 来确认。
+关闭 PPMGR:
+echo rm default > /sys/class/vfm/map
+echo add default decoder deinterlace amvideo > /sys/class/vfm/map
+通过 Underflow 查看:
+cat /sys/module/amvideo/parameters/underflow
+cat /sys/class/video/freerun_mode
+卡顿时看这个值是否一直增长,如果是则是 amvideo 前边的节点数据送过来的慢导致的,
+c、带宽不足卡顿
+提高 CPU 频率:
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+echo performance > scaling_governor
+关闭 OSD
+echo 1 > /sys/class/graphics/fb0/blank
+查看带宽信息
+Check P_MMC_MON_CH0_REQ_CNT~P_MMC_MON_ALL_GRANT_CNT in header file.
+P_MMC_MON_CTRL3 to set measure duration
+P_MMC_MON_CTRL0~P_MMC_MON_CTRL2 to enable channel monitor
+P_MMC_MON_CH0_REQ_CNT~P_MMC_MON_CH9_REQ_CNT to read back per channel request/grant
+P_MMC_MON_ALL_REQ_CNT and P_MMC_MON_ALL_GRANT_CNT to read whole mmc request/grant
+1.5 音视频不同步
+如果出现音视频不同步,先确认如下状态:
+同步是否打开:cat /sys/class/tsync/enable
+同步的状态:cat /sys/class/tsync/mode
+0: vmaster //视频为准,一般这个时候表示音视频不做同步;
+1:amaster //以音频作为同步基准;
+2:pcrmaster //以独立的系统时间为基准;
+查看 APTS、PCR、VPTS:
+cd /sys/class/tsync/
+cat pts_audio pts_pcrscr pts_video
+pts 的单位是 1/90000,也就是,数值 90000 表示一秒,一般比较明显的看到不同步在 100ms 左右,也就 9000;
+如果 pts 不对就查看 checkin checkout pts。
+1.5.2 音频比视频早
+setprop sys.amplayer.drop_pcm 1
+看是否还有不同步出现。
+1.5.3 音频比视频晚
+a、查看 checkin checkou pts
+echo 1 > /sys/class/tsync/debug_audio_pts
+查看 audio pts
+echo 1 > /sys/class/tsync/debug_pts_checkin
+查看 checkin 的 pts
+echo 1 > /sys/class/tsync/debug_pts_checkout 查看 checkout 的 pts
+echo 1 > /sys/class/tsync/debug_video_pts
+查看 video pts
+b、确认是 audio 还是 video 的问题
+echo 0 > /sys/class/tsync/enable
+对比在 PC 上播放该视频,确认是 audio 还是 video 播放的问题。
+如果是 audio pts 有问题,一般是 pts 计算错误,这个一般出现在音频那边;以为音频 pts 计算复杂;
+c、设置 freerun_mode
+echo 1 > /sys/class/video/freerun_mode
+看看是否还会不同步。
+d、确认音频采样率
+1.5.4 音频流畅,视频时快时卡住
+这种情况可能是 vsync 里面算 pcr 有问题。
+cat /sys/class/video/frame_rate
+VF.fps=0.00 panel fps 50, dur/is: 93,v/s=49.46,inc=1800
+panel fps 为输出的刷新率。
+v/s 为实时刷新率。
+1.5.5 一直流畅播放,但是不同步
+设置控制同步的阀值
+最小不同步时间:RW: /sys/class/tsync/av_threshold_min
+最大不同步时间:RW:/sys/class/tsync/av_threshold_max
+当音视频 pts 差距跳入:<min 区间: ?音频或者视频会暂停或者加速同步上;
+当音视频 pts 差距>min,Max 是,
+音视频会暂时不强制同步,
+等待超时 60 秒后强制同步;?如果视频和音频差距>max,
+同步系统放弃同步处理;
+1.6 视频抖动、闪烁、锯齿
+视频抖动、闪烁和锯齿大部分和 Deinterlace,RDMA 和 VPP 设置相关。
+1.6.1 Deinterlace
+a、确认 Deinterlace 模块是否在 vfm/map 链里
+cat /sys/class/vfm/map
+default { decoder(1) ppmgr(1) deinterlace(1) amvideo}
+如果 default 里面没有 deinterlace,执行如下指令添加 deinterlace 模块。
+echo rm default > /sys/class/vfm/map
+echo add default decoder ppmgr deinterlace amvideo > /sys/class/vfm/map
+b、确认 Deinterlace 模块是否被 bypass
+播放节目过程中:cat /sys/module/di/parameters/bypass_state
+如果为 1 则被 bypass
+那要根据片源的情况,然后查看
+cat /sys/module/di/parameters/
+bypass_1080p
+1080p 片源 bypass
+bypass_3d
+3D 片源是否 bypass
+bypass_all
+强制所有的都 bypass
+bypass_dynamic
+是否动态 bypass
+bypass_hd
+高清片源 bypass
+bypass_hd_prog
+高清逐行片源 bypass
+bypass_interlace_output
+I 模式输出的时候所有片源 bypass
+bypass_prog
+逐行片源 bypass
+看是哪个结点造成 di bypass 的。把它设成 0 之后,然后再播放,看是否还抖动。
+c、开关 nr
+echo 0/1 >/sys/module/di/parameters/nr2_en
+d、查看 Deinterlace 模块工作状态
+echo state > /sys/class/deinterlace/di0/debug
+e、确认送到 DI 模块的帧是否是 top/bottom 均匀穿插
+cat /sys/module/di/parameters/same_field_bot_count
+cat /sys/module/di/parameters/same_field_top_count
+如果这两个值有一个一直在增加就说明前边解码器解码有问题,此时会出现锯齿。
+f、小窗口视频闪烁
+cat /sys/module/di/parameters/di_vscale_skip_count_real
+是否真实在小窗口情况下
+cat /sys/module/di/parameters/di_vscale_skip_count
+是否是在小窗口情况下
+cat /sys/module/di/parameters/di_vscale_skip_enable
+是否 enable 小窗口时 bypass di
+1.6.2 VPP 设置
+在小窗口出现花屏或者闪烁的时候,还有可能是因为带宽问题。我们现在解决的方式就是在小窗口播放的时候,
+先抽掉一部分视频帧的线,然后再送到 VPP 去显示。
+通过如下命令可以看一下目前是否有抽线处理:
+cat /sys/class/video/video_state
+zoom_start_x_lines:0.zoom_end_x_lines:1279.
+zoom_start_y_lines:0.zoom_end_y_lines:719.
+frame parameters: pic_in_height 720.
+//标示抽线后的高度
+frame parameters: VPP_line_in_length_ 1280.
+vscale_skip_count 0.
+//标示抽线条数
+hscale_skip_count 0.
+hscale phase step 0x1000000.
+vscale phase step 0x1000000.
+根据这些状态信息可以确定输入的大小,是否抽线,是否在做 scale,是否打开 3d 等,一般花屏等问题需要这些信息。
+如果发现窗口很小,而没有抽线,可以修改如下结点:
+cat /sys/module/amvideo/parameters/bypass_ratio
+Vpp 的处理能力会根据这个值算出来一个结果,根据结果来判断是否抽线,越大越不容易抽线,越小越容易抽线。
+1.6.3 RDMA
+cat /sys/module/rdma/parameters/enable
+如果为 0,则为关闭,echo 1 > /sys/module/rdma/parameters/enable 看是否还抖动。
+2、网络流播放问题分析
+2.1 Dump 音视频流
+2.1.1 APK 用 MediaPlayer 接口实现:
+网络流遇到各种问题,首先需要 Dump 流,确认在本地能否复现问题。Dump 方法如下:
+播放在线视频 dump 数据
+1.创建 dump 文件夹 mkdir /data/tmp
+2.修改 temp 文件夹属性
+chmod 777 /data/tmp
+3.设置 dump 数据类型
+setprop media.libplayer.dumpmode x
+x 的值:
+1 ts,ps,rm 几种流的 raw data 从文件或网络读到的数据 dump
+2 ts,ps,rm 几种流的 raw data 写入解码 buffer 的数据 dump
+4 es 码流 video 数据,读数据 dump
+8 es 码流 video 数据,写数据 dump
+16 es 码流 audio 数据,读数据 dump
+32 es 码流 audio 数据,写数据 dump
+dump 到的数据存放在/data/tmp/pidn_dump_xx.dat 以 pidn 开头,可以区分是哪个线程 dump 出来的数据。
+播放 ts 如果开 softdemux 后 dump 不到 ts 流,需要按 es 流 dump
+2.1.2 APK 用 MediaCodec 或者 OMX 接口实现:
+如果播放 APK 用的是 MediaCodec 或者 OMX 接口来实现的,那只能 dump 到 ES 数据,dump 接口如下:
+media.omx.dumpRecv
+是否 dump Omx codec 接收到的数据
+media.omx.dumpCodec
+是否 dump Omx codec 往解码 buffer 里面写的数据
+media.omx.RecvDir
+设置 dump Omx codec 接收到的数据写到哪个目录
+media.omx.CodecDir
+设置 dump Omx codec 往解码 buffer 数据写到哪个目录
+media.omx.RecvName
+设置 dump Omx codec 接收到的数据写到哪个文件里
+media.omx.CodecName
+设置 dump Omx codec 往解码 buffer 数据写到哪个文件里
+例如:
+如果需要 dump Omx Codec 接收到的数据到/data/tmp/es_aml_recv.0 同时还要 dump Omx Codec 往解码 buffer
+数据到/data/tmp/es_aml_codec.0,对应的设置如下:
+setprop media.omx.dumpRecv true
+setprop media.omx.dumpCodec true
+setprop media.omx.RecvDir /data/tmp
+setprop media.omx.CodecDir /data/tmp
+setprop media.omx.RecvName es_aml_recv.0
+setprop media.omx.CodecName es_aml_codec.0
+如果目录不存在记得创建,然后修改目录权限为 777。
+
+
+
+cat  /sys/class/amstream/bufs
+buf level:0xa3b423－－－－－目前可供解码的数据量 
+buf space:0x33dd－－－－－－buffer 剩余空间
+
+ /sys/class/video/                                 
+ blackout_policy－保留最后一帧    
+ frame_format －－帧格式    
+ frame_height－－－视频高    
+ frame_rate  －－－－帧率    
+ frame_width－－－－视频宽        
+ screen_mode－－－－显示模式    
+ vframe_states－－－－帧 buffer循环状况
+
+/sys/class/tsync/root@android:/ # ls -l /sys/class/tsync/                                   
+debug_audio_pts-----－－查看audio pts 
+debug_pts_checkin---－－查看checkin的pts 
+debug_pts_checkout－－－查看checkout的pts 
+debug_video_pts－－－－查看video pts 
+enable－－－－－使能同步标志  
+mode－－－－－目前同步状态 pts_
+audio－－－当前audio pts 
+pts_pcrscr－－－－当前系统时间 
+pts_video－－－－－当前 video pts
+
+
+#关同步echo 0 >/sys/class/tsync/enable
+#屏蔽audiosetprop media.amplayer.noaudio 1
+#屏蔽videosetprop media.amplayer.novideo 1
+
+root@android:/ # cat /sys/class/audiodsp/dsp_working_status                            
+dsp status  0x52756e－－－running 状态        
+dsp sp  0x9c56ff04        dsp ilink1  0x6328        
+dsp ilink2  0x6328        dsp blink  0x2de4        
+dsp jeffies  0x329f       dsp pcm wp  0x9c559680－－－－指针是否在变化 
+dsp pcm rp  0x9c5596a0－－－－－指正是否变化   
+dsp pcm buffer level  0x7fa0－正常维持在32K的 pcm 供输出     
+dsp pcm buffered size  0x2ea0        
+dsp es read offset  0x13941
+
+用于控制h.264解码的错误处理方式。对应寄存器AV_SCRATCH_F两个bit:bit 0: 
+在某些错误情况下是否reset decoder来恢复解码，这种reset可能会引起大量丢帧。
+1不做reset,0做reset.bit 1:是否需要把错误的帧传递出来。1表示需要不显示错误帧，
+0表示显示错误帧（画面可能会有马赛克）。
+一般来说，如果项目上不想看到任何的马赛克，就使用2。如果想尽可能地看到解码的内容，不管有没有马赛克，就用1。如果需要看到错误帧，但是希望有一定的纠错，就用0
+。echo 0 > /sys/module/amvdec_h264/parameters/error_recovery_mode  // disable error recovery mode, show every frame even with mosaic
+echo 3 > /sys/module/amvdec_h264/parameters/error_recovery_mode  // enable error recovery mode, skip error frames
+
+
 
 mx取码流文件
 
 1. mkdir /data/tmp
 2. chmod 777 /data/tmp
-3. setprop media.libplayer.dumpmode x
+3. setprop media.
     x value as follows:
 	    1:raw data read (for ts, ps, rm read data from stream)
 	    2:raw data write (for ts,ps, rm write data to avbuffer)
@@ -414,9 +958,28 @@ mx取码流文件
 
 mkdir /data/tmp;chmod 777 /data/tmp;setprop media.libplayer.dumpmode 2
 
+logcat -c;logcat -s amffmpeg
+wget www.xxx.xx
+
+
+16:28:05
+Hank 2015-7-29 16:28:05
+//dump es software demux
+mkdir /data/temp/
+chmod 777 /data/temp/
+setprop media.libplayer.dumppath /data/temp
+setprop media.libplayer.dumpmode 8
+
+//dump ts hw demux
+setprop media.libplayer.dumppath /data/temp
+setprop media.libplayer.dumpmode 2
+
+
+
 加在 LOCAL_PACKAGE_NAME := HiveviewSetting 之前 
 LOCAL_DEX_PREOPT := false
 
+http://git.imagemagick.org/repos/ImageMagick
 
 convert -resize 1920x1080! aaa.bmp bbb.bmp                      ! 强制转
 convert -resize 1280x720! input.bmp output.bmp
@@ -428,6 +991,7 @@ identify
 
 重新提交代码
 
+ git pull --rebase timehold-server s812-soundbar-0313
 
 
 git branch jb-mr1-1225-timehold
@@ -525,6 +1089,12 @@ HowEasy
 pp63097
 xKrqvMuYu
 
+crossvpn
+http://crossvpn.a.scjinlong.com/?p=374
+账号，user:dev1313 password: 7955909
+
+
+
 cat /proc/`ps | grep com.voole.vooledesktop | awk '{print $2}'`/oom_adj
 echo 1 > /proc/sys/kernel/printk
 top -d 1 | grep voole
@@ -543,6 +1113,10 @@ tcpdump http://my.oschina.net/xiahuawuyu/blog/108915
 tcpdump -p -vv -s 0 -w /sdcard/capture.pcap 
 
 busybox telnetd -l /system/bin/sh
+
+dmtracedump
+sudo apt-get install graphviz
+
 
 
 /framework/av/cmds
@@ -751,6 +1325,25 @@ am broadcast -a airplay.amlogic.stopService
 Hank 2015-3-27 14:52:19
 am broadcast -a airplay.amlogic.startService
 
+
+
+adb shell am broadcast 后面的参数有：
+
+[-a <ACTION>]
+[-d <DATA_URI>]
+[-t <MIME_TYPE>] 
+[-c <CATEGORY> [-c <CATEGORY>] ...] 
+[-e|--es <EXTRA_KEY> <EXTRA_STRING_VALUE> ...] 
+[--ez <EXTRA_KEY> <EXTRA_BOOLEAN_VALUE> ...] 
+[-e|--ei <EXTRA_KEY> <EXTRA_INT_VALUE> ...] 
+[-n <COMPONENT>]
+[-f <FLAGS>] [<URI>]
+
+
+adb shell am broadcast -a com.android.test --es test_string "this is test string" --ei test_int 100 --ez test_boolean true
+
+
+
 ================================================
 pppoe
 
@@ -841,6 +1434,16 @@ else
     echo 0 > /sys/class/audiodsp/digital_raw
 fi
 
+
+关闭hdmi的声音
+root@m201:/sys/class/amhdmitx/amhdmitx0 # echo audio_off > config            
+[34841.578955@0] hdmitx: audio: configure off
+
+打开hdmi的声音
+root@m201:/sys/class/amhdmitx/amhdmitx0 # echo audio_on > config
+[34896.868518@0] hdmitx: audio: configure on
+
+
 修改android 最大音量值
 
 diff --git a/media/java/android/media/AudioService.java b/media/java/android/media/AudioService.java                                           
@@ -896,3 +1499,116 @@ Kernel.mk   修改拷贝ko文件
 cibn
 
 b0:d5:9d:19:eb:a2
+
+
+$(info $(shell cp -v $(LOCAL_PATH)/UpgradeLogo out/target/product/$(TARGET_PRODUCT)/system/bin/))
+
+========================================
+Android.mk 添加依赖的jar包
+LOCAL_STATIC_JAVA_LIBRARIES := libksoap2 libSilentUpdate
+
+include $(BUILD_PACKAGE)
+
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := libksoap2:libs/ksoap2.jar libSilentUpdate:libs/SilentUpdate.jar
+
+Android.mk 添加so 库到apk   
+LOCAL_JNI_SHARED_LIBRARIES := libbleRuntime
+
+include $(BUILD_PACKAGE)
+
+LOCAL_PREBUILT_LIBS := libbleRuntime:libs/armeabi/libbleRuntime.so
+=================================================
+getprop dalvik.vm.heapsize  //如果build.prop里面没有heapsize这些值，可以用这个抓取默认值
+setprop dalvik.vm.heapsize 256m  //设置
+
+-----------------------    build.prop 部分内容 ---------------------
+
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=96m
+dalvik.vm.heapsize=384m
+dalvik.vm.heaputilization=0.25
+dalvik.vm.heapidealfree=8388608
+dalvik.vm.heapconcurrentstart=2097152
+ro.setupwizard.mode=OPTIONAL
+ro.com.google.gmsversion=4.1_r6
+net.bt.name=Android
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
+
+android 工具类
+https://github.com/Trinea/android-common
+
+https://github.com/Trinea/android-common.git
+
+引入工程jar
+out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar
+
+uid :
+init.rc
+   # create hiveview dir
+    mkdir /data/hiveview 0755 hiveview hiveview
+
+core/java/android/os/Process.java:128:    public static final int HIVEVIEW_UID = 2100;
+services/java/com/android/server/pm/PackageManagerService.java:980: 
+					 mSettings.addSharedUserLPw("android.uid.hiveview", Process.HIVEVIEW_UID, ApplicationInfo.FLAG_SYSTEM);
+
+
+frameworks/base/core/java/android/os/Process.java
+
+
+sudo sysv-rc-conf 
+
+HLS
+
+git://git.videolan.org/x264.git
+
+git clone https://github.com/johnf/m3u8-segmenter
+segmenter -i test.ts -n 30 -p sample_test -m stream-test.m3u8 -u http://192.168.1.10:8080/hls/
+
+
+GPIOAO_4
+
+echo write 0x9fef1fab a 0x0024 > sys/class/amlogic/debug
+
+制作jar cmd 
+
+jar2dex='dx --dex --output=classes.dex'
+
+jar -cvf xxx.jar class.jar
+
+adb push xxx.jar /system/framework
+
+开机第一次属性
+ro.firstboot
+
+iptv mount 
+
+echo 1 > /sys/class/remount/need_remount
+
+获取温度
+cat /sys/class/thermal/thermal_zone0/temp
+
+
+am broadcast -a com.kehwin.action.PARING_REMOTECONTROL
+
+routeos  admin setup
+
+kernel/debug/hid/0005\:04B4\:5673.0001/
+
+/**@hide*/ 表示不对外公开api,但是系统内部是可以使用该注释标记的接口的.
+蓝牙 http://blog.csdn.net/wenbo13579/article/details/47083923
+s805/bionic/libc/kernel/common/linux/input.h   输入设备类型
+#define BUS_PCI 0x01
+#define BUS_ISAPNP 0x02
+#define BUS_USB 0x03
+#define BUS_HIL 0x04
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define BUS_BLUETOOTH 0x05
+#define BUS_VIRTUAL 0x06
+#define BUS_ISA 0x10
+#define BUS_I8042 0x11
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define BUS_XTKBD 0x12
+#define BUS_RS232 0x13
+#define BUS_GAMEPORT 0x14
+
+

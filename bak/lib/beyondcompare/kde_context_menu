@@ -1,0 +1,199 @@
+#!/bin/sh
+
+# Perform Beyond Compare actions for KDE context menu
+#
+# Version 1.0.0
+# Author: Dave Lerner <http://Dave-L.com/>
+# License: GNU General Public License version 2
+#
+# Requirements:
+#   Linux, KDE, BeyondCompare 3
+#
+# Documentation:
+#   Tutorial by Aaron Siego
+#   http://developer.kde.org/documentation/tutorials/dot/servicemenus.html
+#
+# Installation:
+#   Review the definitions below, and make any desired changes.
+#   Place this script in the location specified by ACTIONFILE below, creating the necessary parent directories.
+#   Initialize by running this script without any parameters.
+#
+# Parameters:
+#   $1 - 'left' ($2 specifies left side), 'right' ($2 specifies right side) or '' (initialize)
+#   $2 - path to directory or file
+
+# definitions
+# WINEDRIVE=Z
+# WINEPATH="/usr/bin/wine"
+BC_LIB=/home/lishirong/lib/beyondcompare
+BC_BIN=/home/lishirong/bin
+BCEXEFILE="$BC_BIN/bcompare"
+STATEFILE="$HOME/.beyondcompare/state"
+ACTIONFILE="$BC_LIB/kde_context_menu"
+DESKTOPFILE_COMPARE="beyondcompare_compare.desktop"
+DESKTOPFILE_MORE="beyondcompare_more.desktop"
+DESKTOPFILE_SELECT="beyondcompare_select.desktop"
+
+if [ "$KDE_SESSION_VERSION" = "4" ]; then
+	if [ -d "$HOME/.kde4" ]; then
+		KDEBASE=$HOME/.kde4
+	else
+		KDEBASE=$HOME/.kde
+	fi
+	
+	rm -f "$KDEBASE/share/kde4/services/ServiceMenus/beyondcompare.desktop"
+	DESKTOPFILE_COMPARE="$KDEBASE/share/kde4/services/ServiceMenus/$DESKTOPFILE_COMPARE"
+	DESKTOPFILE_MORE="$KDEBASE/share/kde4/services/ServiceMenus/$DESKTOPFILE_MORE"
+	DESKTOPFILE_SELECT="$KDEBASE/share/kde4/services/ServiceMenus/$DESKTOPFILE_SELECT"
+	TYPE="Type=Service"
+	SERVICETYPES="ServiceTypes=KonqPopupMenu/Plugin,"
+else
+	rm -f "$HOME/.kde/share/apps/konqueror/servicemenus/beyondcompare.desktop"
+	DESKTOPFILE_COMPARE="$HOME/.kde/share/apps/konqueror/servicemenus/$DESKTOPFILE_COMPARE"
+	DESKTOPFILE_MORE="$HOME/.kde/share/apps/konqueror/servicemenus/$DESKTOPFILE_MORE"
+	DESKTOPFILE_SELECT="$HOME/.kde/share/apps/konqueror/servicemenus/$DESKTOPFILE_SELECT"
+	TYPE=""
+	SERVICETYPES="ServiceTypes="
+fi
+
+MIME="all/all"
+cat <<-zz_endoftext >$DESKTOPFILE_SELECT
+	[Desktop Entry]
+	$TYPE
+	$SERVICETYPES$MIME
+	Actions=SelectLeft
+	[Desktop Action SelectLeft]
+	Name=Select Left Side to Compare
+	Exec=$ACTIONFILE left %f
+	Icon=bcomparehalf32
+zz_endoftext
+
+case "$1" in
+
+	'left')
+		if [ -d $2 ]; then
+			MIME=inode/directory
+			cat <<-zz_endoftext >$DESKTOPFILE_MORE
+				[Desktop Entry]
+				$TYPE
+				$SERVICETYPES$MIME
+				Actions=FolderCompare;FolderSync
+				X-KDE-Submenu=Compare using
+
+				[Desktop Action FolderCompare]
+				Name=Folder Compare
+				Exec=$ACTIONFILE rightfolder %f
+				Icon=bcomparefull32
+
+				[Desktop Action FolderSync]
+				Name=Folder Sync
+				Exec=$ACTIONFILE rightsync %f
+				Icon=bcomparefull32
+			zz_endoftext
+		else
+			MIME=all/allfiles
+			cat <<-zz_endoftext >$DESKTOPFILE_MORE
+				[Desktop Entry]
+				$TYPE
+				$SERVICETYPES$MIME
+				Actions=TextCompare;TextMerge;DataCompare;HexCompare;PictureCompare
+				X-KDE-Submenu=Compare using
+
+				[Desktop Action TextCompare]
+				Name=Text Compare
+				Exec=$ACTIONFILE righttext %f
+				Icon=bcomparefull32
+
+				[Desktop Action TextMerge]
+				Name=Text Merge
+				Exec=$ACTIONFILE rightmerge %f
+				Icon=bcomparefull32
+
+				[Desktop Action DataCompare]
+				Name=Data Compare
+				Exec=$ACTIONFILE rightdata %f
+				Icon=bcomparefull32
+
+				[Desktop Action HexCompare]
+				Name=Hex Compare
+				Exec=$ACTIONFILE righthex %f
+				Icon=bcomparefull32
+
+				[Desktop Action PictureCompare]
+				Name=Picture Compare
+				Exec=$ACTIONFILE rightpicture %f
+				Icon=bcomparefull32
+			zz_endoftext
+		fi
+
+		echo "$2" >$STATEFILE
+
+		cat <<-zz_endoftext >$DESKTOPFILE_COMPARE
+			[Desktop Entry]
+			$TYPE
+			$SERVICETYPES$MIME
+			Actions=CompareTo
+			[Desktop Action CompareTo]
+			Name=Compare to "$2"
+			Exec=$ACTIONFILE right %f
+			Icon=bcomparefull32
+		zz_endoftext
+
+		;;
+
+	right*)
+		rm -f $DESKTOPFILE_COMPARE
+		rm -f $DESKTOPFILE_MORE
+
+		if [ -e "$STATEFILE" ]; then
+			LEFTSIDE=`cat $STATEFILE`
+			rm -f $STATEFILE
+		else
+			LEFTSIDE=''
+		fi
+
+		if [ -n "$LEFTSIDE" ]; then
+			case "$1" in
+				right)
+					"$BCEXEFILE" "$LEFTSIDE" "$2"
+					;;
+				rightfolder)
+					"$BCEXEFILE" "$LEFTSIDE" "$2"
+					;;
+				rightsync)
+					"$BCEXEFILE" -sync "$LEFTSIDE" "$2"
+					;;
+				righttext)
+					"$BCEXEFILE" -fv="Text Compare" "$LEFTSIDE" "$2"
+					;;
+				rightmerge)
+					"$BCEXEFILE" -fv="Text Merge" "$LEFTSIDE" "$2"
+					;;
+				rightdata)
+					"$BCEXEFILE" -fv="Data Compare" "$LEFTSIDE" "$2"
+					;;
+				righthex)
+					"$BCEXEFILE" -fv="Hex Compare" "$LEFTSIDE" "$2"
+					;;
+				rightpicture)
+					"$BCEXEFILE" -fv="Picture Compare" "$LEFTSIDE" "$2"
+					;;
+				*)
+					"$BCEXEFILE" "$LEFTSIDE" "$2"
+					;;
+			esac
+		fi
+
+		;;
+
+	*)
+		rm -f $DESKTOPFILE_COMPARE
+		rm -f $DESKTOPFILE_MORE
+		rm -f $STATEFILE
+
+		;;
+
+esac
+if [ "$KDE_SESSION_VERSION" = "4" ]; then
+	kbuildsycoca4 &> /dev/null
+fi
