@@ -1625,3 +1625,14 @@ wl scan
 wl scanresults
 就可以扫到ap了.
 
+vbox 添加usb识别方法
+
+1安装扩展包
+2 adduser xxx vboxusers
+
+重启 id 查看是否加入到 vboxusers用户组
+http://www.360doc.com/content/12/0410/14/3700464_202466046.shtml
+http://blog.csdn.net/qq435792305/article/details/7428304
+
+
+ibus  input method switcher
