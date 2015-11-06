@@ -1634,5 +1634,7 @@ vbox 添加usb识别方法
 http://www.360doc.com/content/12/0410/14/3700464_202466046.shtml
 http://blog.csdn.net/qq435792305/article/details/7428304
 
-
-ibus  input method switcher
+goole输入法
+ibus  
+KeyBoard input method 添加google输入法
+input method switcher 选择默认ibus 启动
