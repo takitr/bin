@@ -1,0 +1,13 @@
+insmod 要带参数.
+ap6330
+insmod /system/lib/dhd.ko firmware_path=/etc/wifi/40183/fw_bcm40183b2.bin nvram_path=/etc/wifi/40183/nvram.txt
+ap6210
+insmod /system/lib/dhd.ko firmware_path=/etc/wifi/40181/fw_bcm40181a2.bin nvram_path=/etc/wifi/40181/nvram.txt
+ap6181
+insmod /system/lib/dhd.ko firmware_path=/etc/wifi/40181/fw_bcm40181a2.bin nvram_path=/etc/wifi/40181/nvram.txt
+执行上述命令后,
+busybox ifconfig wlan0 up
+wl scan
+wl scanresults
+就可以扫到ap了.
+
