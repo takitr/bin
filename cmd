@@ -1638,3 +1638,6 @@ goole输入法
 ibus  
 KeyBoard input method 添加google输入法
 input method switcher 选择默认ibus 启动
+
+Linux下安装bcompare
+http://blog.csdn.net/npjocj/article/details/9718231
