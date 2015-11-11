@@ -5,7 +5,7 @@
 # Created Time: Sat 23 Aug 2014 05:31:35 PM CST
 #########################################################################
 #!/bin/bash
-KEY_PATH=/opt/signzip_s805
+KEY_PATH=~/bin/sign
 filename=$1
 PWD=`pwd`
 
@@ -28,4 +28,4 @@ if [ ${filename##*.} !=	"zip" ];then
 	exit 0
 fi
 
-java -Xmx2048m -jar $KEY_PATH/signapk.jar -w $KEY_PATH/nosecurekey/testkey.x509.pem $KEY_PATH/nosecurekey/testkey.pk8 $1 update.zip
+java -Xmx2048m -jar $KEY_PATH/signapk.jar -w $KEY_PATH/s805_rom/testkey.x509.pem $KEY_PATH/s805_rom/testkey.pk8 $1 update.zip

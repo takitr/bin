@@ -106,66 +106,45 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-JAVA_HOME=/opt/jdk1.6.0_45
-CLASSPATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
-export JAVA_HOME CLASSPATH
-export PATH=$PATH:$JAVA_HOME/bin
+#gradle
 
-ARC_PREFIX=/opt/gnutools/arc-4.8-amlogic-20130904-r2
-export PATH=$PATH:${ARC_PREFIX}/bin
-ARM_GCC=/opt/CodeSourcery/Sourcery_G++_Lite
-export PATH=$PATH:${ARM_GCC}/bin
-ARMHF_PREFIX=/opt/gcc-linaro-arm-linux-gnueabihf
-export PATH=$PATH:${ARMHF_PREFIX}/bin
+export PATH=/home/xinhai/android-studio/bin:$PATH
+export PATH=/home/xinhai/gradle-2.9-rc-1/bin:$PATH
 
-export PATH=$PATH:/opt/gnutools/arc2.3-p0/elf32-4.2.1/bin/
-export PATH=$PATH:/opt/gcc-linaro-arm-linux-gnueabihf/bin
-
-export PATH=$PATH:/opt/arc-4.8-amlogic-20130904-r2/bin
+export PATH=/opt/gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux/bin/:$PATH
+export PATH=/opt/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin/:$PATH
 
 alias xp='virtualbox --startvm xp'
 alias o='nautilus'
 alias openpdf='evince'
 alias apk='aapt dump badging'
+alias jar2dex='dx --dex --output=classes.dex'
 alias f='git log --pretty=oneline'
 alias g18_th8='. ./build/envsetup.sh && lunch g18ref_th8-user'
 alias g18_ref='. ./build/envsetup.sh && lunch g18ref-user'
 alias m201='. ./build/envsetup.sh && lunch m201-user'
-alias m201_th0='. ./build/envsetup.sh && lunch m201_th0-user'
+alias m201_th0='. ./build/envsetup.sh && lunch m201_th0-user;export BUILD_APK=CANBOX_C1'
 alias m201_512_th1='. ./build/envsetup.sh && lunch m201_512m_th01-user && export BUILD_APK=B2B'
-alias m201_512_th100='. ./build/envsetup.sh && lunch m201_512m_th100-user && export BUILD_APK=ZHONG_HUA_YUN_HE_SHUIPING'
 alias m201_512_th8='. ./build/envsetup.sh && lunch m201_512m_th8-user'
 alias m201_telecom='. build/envsetup.sh && export PROJECT_TYPE=telecom PROJECT_ID=m201 && lunch m201-user'
 alias m201_unicom='. build/envsetup.sh;export PROJECT_TYPE=unicom PROJECT_ID=m201;lunch m201-user'
 alias n200C='. build/envsetup.sh && lunch n200C-user'
+alias p201_userdebug='. build/envsetup.sh;lunch p201-userdebug-32'
+alias p200_userdebug='. build/envsetup.sh;lunch p200-userdebug-32'
 
 alias ssh_timehold='ssh zhaoxinhai@timehold.f3322.org -p 8989'
-alias ssh_timehold2='ssh zhaoxinhai@timehold.wicp.net -p 7878'
-alias sftp_timehold2='sftp -P 7878 sftp-cibn@timehold.wicp.net'
+alias ssh_timehold2='ssh zhaoxinhai@timehold.f3322.org -p 7878'
+alias sftp_timehold2='sftp -P 7878 zhaoxinhai@timehold.f3322.org'
 alias ssh_aml='ssh hank.chen@10.28.8.15'
 alias ssh_aml2='ssh hank.chen@10.28.8.20'
-
+alias set_java7_HOME='export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH;export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64;unset CLASSPATH'
 alias mk='device/amlogic/g18ref_th8/quick_build_kernel.sh'
 alias sum='du -cms ./* | sort -rn | head -n 5'
-alias signapk='java -jar /opt/signapk/signapk.jar /opt/signapk/platform.x509.pem /opt/signapk/platform.pk8'
-alias eclipse='sudo /home2/adt-bundle-linux-x86_64-20140321/eclipse/eclipse'
+alias signapk='java -jar ~/bin/sign/signapk.jar ~/bin/sign/apk/platform.x509.pem ~/bin/sign/apk/platform.pk8'
 export PATH=$PATH:/home/xinhai/bin:~/bin/dex2jar-0.0.9.15
-export ANDROID_SDK_HOME=/home2/adt-bundle-linux-x86_64-20140321/sdk
-export PATH=$PATH:$ANDROID_SDK_HOME/tools
-export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools
-export PATH=$PATH:/home2/work/s805/ndk
-export patch=~/amlogic/patch
-export mx=~/amlogic/mx
-export release=~/amlogic/release
-export s805=/home2/work/s805
+export s805=/home2/work/s805_cibn
 export USE_CCACHE=1
 export CCACHE_DIR=~/.ccache
-ccache -M 20G
+#ccache -M 20G
 
-export BOARD_VENDOR=TW
-#export BOARD_VENDOR=TW_SECURE
-#set wifi hardware for zhuoyi
-#export BUILD_APK=B2C 
-export BUILD_APK=ZHONG_HUA_YUN_HE
-#export BUILD_APK=QUAN_ZHOU_DIAN_XIN
-#export TARGET_USE_SECURITY_MODE=ture
+
