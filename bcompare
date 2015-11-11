@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BC_LIB=~/bin/bak/lib/beyondcompare
+BC_LIB=/home/xinhai/lib/beyondcompare
 export BC_LIB
 
 BC_PACKAGE_TYPE=archive
@@ -24,8 +24,16 @@ if [ "$CHECK" -ne  "0" ]; then
 fi
 
 ########################################
-# initialize context menus
-$BC_LIB/context_init.sh
+# initialize context menu action scripts for KDE 3.5
+if [ "$KDE_FULL_SESSION" = "true" ]; then
+	if [ "$KDE_SESSION_VERSION" != "4" ]; then
+		mkdir -p $HOME/.beyondcompare
+		if [ -d "$HOME/.kde/share/apps/konqueror" ]; then
+			mkdir -p $HOME/.kde/share/apps/konqueror/servicemenus
+		fi
+		$BC_LIB/kde_context_menu
+	fi
+fi
 
 ########################################
 # execute the program

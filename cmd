@@ -242,7 +242,7 @@ git clone ssh://git@timehold.wicp.net/timehold/app_th_dtv
 
 s905:
 
-repo init -u ssh://git@timehold.f3322.org/amlogic/l-amlogic-gx/l-amlogic-gx/platform/manifest.git -b  l-amlogic-gx-sync -m openlinux_l-amlogic_20150630.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
+repo init -u ssh://git@timehold.f3322.org/amlogic/l-amlogic-gx/l-amlogic-gx/platform/manifest.git -b  l-amlogic-gx-sync -m openlinux_l-amlogic_20151031.xml --repo-url=ssh://git@timehold.f3322.org/android/git-repo.git
 
 
 
@@ -1641,3 +1641,20 @@ input method switcher 选择默认ibus 启动
 
 Linux下安装bcompare
 http://blog.csdn.net/npjocj/article/details/9718231
+
+android studio 导入源码
+mmm development/tools/idegen/
+development/tools/idegen/idegen.sh
+
+Permission denied (publickey)  解决办法
+1 检查本机 /etc/ssh/sshd_config  是否正确
+
+2 本机 id_rsa.pub  是否加入到服务器 ~/.ssh/authorized_keys
+
+3 ssh 文件目录权限问题
+http://blog.csdn.net/hanhuili/article/details/11055293
+在登录的服务器上面
+chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod go-w ~/
+

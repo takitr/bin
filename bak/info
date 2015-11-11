@@ -1263,3 +1263,6 @@ frameworks/base/policy/src/com/android/internal/policy/impl/PhoneWindowManager.j
 jinbo  dvb88888
 
 ASA113-15
+
+cp usr/lib/jni/libswt-*3740.so home/zhong/.swt/lib/linux/x86_64/
+sudo mount -t smbfs -o username=zhaoxinhai,password=zhao460212643 //192.168.2.2/zhaoxinhai /mnt/xinhai
