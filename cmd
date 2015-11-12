@@ -1658,3 +1658,10 @@ chmod 600 ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 chmod go-w ~/
 
+
+
+s905
+rm out/target/product/p200/obj/KERNEL_OBJ/arch/arm64/boot/dts/amlogic/gxbb_p200.dtb
+
+make -C common O=../out/target/product/p200/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- gxbb_p200.dtb
+store erase dtb;fatload mmc 0 12000000 gxbb_p200.dtb;store dtb write 12000000
